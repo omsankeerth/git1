@@ -1,0 +1,5 @@
+service
+{
+       "_SYS_BIC"."git1.SLFiori.HANAViews.common/bankAcctDetails" as "BankDetails" 
+        key generate local "Subsidary" ; 
+}
