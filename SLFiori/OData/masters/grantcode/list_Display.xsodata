@@ -1,0 +1,6 @@
+service
+{
+       "_SYS_BIC"."git1.SLFiori.HANAViews.masters.grantcode/list_display" as "Code" 
+       key generate local "Code"; 
+       
+}
