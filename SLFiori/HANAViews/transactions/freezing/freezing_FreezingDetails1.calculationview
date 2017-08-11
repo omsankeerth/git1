@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="freezing_FreezingDetails1" defaultClient="crossClient" defaultLanguage="$$language$$" hidden="false" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE">
+  <descriptions defaultDescription=""/>
+  <metadata changedAt="2014-05-30 16:16:46.344"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+        <viewAttribute id="DocEntry" datatype="NVARCHAR" length="50"/>
+      
+        <viewAttribute id="LineId" datatype="INTEGER"/>
+      
+        <viewAttribute id="U_PaySbNm" datatype="NVARCHAR" length="100"/>
+      
+        <viewAttribute id="U_PayNo" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_PayDate" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_PayAmt" datatype="DOUBLE"/>
+      
+        <viewAttribute id="U_GrCur" datatype="NVARCHAR" length="10"/>
+        <viewAttribute id="U_PayUSD" datatype="DOUBLE"/>
+        <viewAttribute id="U_PaySbCd" datatype="NVARCHAR" length="20"/>
+      
+        <viewAttribute id="U_PayGC" datatype="DOUBLE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+ 	 var_out = 
+			SELECT A0.&quot;DocEntry&quot;
+ 			,A1.&quot;LineId&quot;,A1.&quot;U_PaySbNm&quot;,A1.&quot;U_PayNo&quot;,CAST(A1.&quot;U_PayDate&quot; AS Nvarchar(10)) As &quot;U_PayDate&quot;
+ 			,A1.&quot;U_PayAmt&quot;,A1.&quot;U_GrCur&quot;,A1.&quot;U_PayUSD&quot;,A1.&quot;U_PaySbCd&quot;,A1.&quot;U_PayGC&quot;
+			FROM &quot;CMD&quot;.&quot;@IK_GRFZ&quot; A0 Inner Join &quot;CMD&quot;.&quot;@IK_RFZ1&quot; A1 ON A0.&quot;DocEntry&quot;=A1.&quot;DocEntry&quot;
+			Order By A1.&quot;LineId&quot; 
+			;
+ END 
+ /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+    
+      <attribute id="U_PaySbNm" order="3">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_PaySbNm"/>
+    
+      </attribute>
+    
+      <attribute id="U_PayNo" order="4">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_PayNo"/>
+    
+      </attribute>
+      <attribute id="U_PayDate" order="5">
+        <keyMapping columnObjectName="Script_View" columnName="U_PayDate"/>
+      </attribute>
+    
+      <attribute id="U_GrCur" order="7">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_GrCur"/>
+    
+      </attribute>
+      <attribute id="U_PaySbCd" order="9">
+        <keyMapping columnObjectName="Script_View" columnName="U_PaySbCd"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="DocEntry" order="1" aggregationType="count" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="DocEntry"/>
+      </measure>
+    
+      <measure id="LineId" order="2" aggregationType="sum" measureType="simple">
+    
+        <measureMapping columnObjectName="Script_View" columnName="LineId"/>
+    
+      </measure>
+      <measure id="U_PayAmt" order="6" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="U_PayAmt"/>
+      </measure>
+    
+      <measure id="U_PayUSD" order="8" aggregationType="sum" measureType="simple">
+    
+        <measureMapping columnObjectName="Script_View" columnName="U_PayUSD"/>
+    
+      </measure>
+      <measure id="U_PayGC" order="10" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="U_PayGC"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

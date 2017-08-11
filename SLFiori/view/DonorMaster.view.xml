@@ -1,0 +1,322 @@
+<core:View xmlns:core="sap.ui.core" 
+xmlns:mvc="sap.ui.core.mvc" 
+xmlns="sap.m" 
+xmlns:ui="sap.ui.table" 
+xmlns:tnt="sap.tnt"
+		controllerName="SLFiori.view.DonorMaster" xmlns:c="sap.ui.commons" xmlns:html="http://www.w3.org/1999/xhtml">
+		
+	<Page
+		title="Donor Master"
+		showNavButton="true"
+		navButtonPress="onBack">
+    	
+    	 <VBox id="Third" width="96%" height="90%" visible="true" class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiSizeCompact DonorBox">
+    	 <!--<Button text="Add New Donor" press="handleAddNewDonor" type="Emphasized" class="sapUiSmallMarginRight AddEntry"></Button>-->
+    	 
+    	    <HBox width="100%" justifyContent="Start" class="">
+				<VBox width="30%" class="sapUiTinyMarginBottom">
+                    <HBox width="100%">
+                      <Label text="Donor Code" class="">
+                      </Label>
+                    </HBox>
+                    <VBox width="80%" >
+                        <Input value="{/CardCode}"  id="CardCode" tooltip="Donor Code should not cross 15 characters" maxLength="15"></Input>
+                    </VBox>
+                </VBox>
+                
+                <VBox width="30%" class="sapUiTinyMarginBottom">
+                    <HBox width="100%">
+                      <Label text="SFDC Id">
+                      </Label>
+                    </HBox>
+                    <VBox width="80%" >
+                        <Input value="{/U_SFDC}"  id="U_SFDC"></Input>
+                    </VBox>
+                </VBox>
+                
+                <VBox width="30%" class="sapUiTinyMarginBottom">
+                    <HBox width="100%">
+                      <Label text="Donor Name" class="">
+                      </Label>
+                    </HBox>
+                    <VBox width="80%" >
+                        <Input value="{/CardName}"  id="CardName"></Input>
+                    </VBox>
+                </VBox>
+                
+                <VBox width="30%" class="sapUiTinyMarginBottom">
+                    <HBox width="100%">
+                      <Label text="EMail ID" class="">
+                      </Label>
+                    </HBox>
+                    <VBox width="80%" >
+                        <Input value="{/E_Mail}"  id="E_Mail"></Input>
+                    </VBox>
+                </VBox>
+                
+                <VBox width="30%" class="sapUiTinyMarginBottom">
+                    <HBox width="100%">
+                      
+                    </HBox>
+                    <VBox width="80%" >
+                        
+                    </VBox>
+                </VBox>
+                
+                
+            </HBox>
+            
+            <HBox width="100%" justifyContent="Start" class="">
+				
+                
+                <VBox width="30%" class="sapUiTinyMarginBottom">
+                    <HBox width="100%">
+                      <Label text="Phone No." class="">
+                      </Label>
+                    </HBox>
+                    <VBox width="80%" >
+                        <Input value="{/Phone1}"  id="Phone1"></Input>
+                    </VBox>
+                </VBox>
+                
+                <VBox width="30%" class="sapUiTinyMarginBottom">
+                    <HBox width="100%">
+                      <Label text="Organisation" class="">
+                      </Label>
+                    </HBox>
+                    <VBox width="80%" >
+                        <Input value="{/Organisation}"  id="Organisation"></Input>
+                    </VBox>
+                </VBox>
+                
+                <VBox width="30%" class="sapUiTinyMarginBottom">
+                    <HBox width="100%">
+                      <Label text="Category" required="true" class="">
+                      </Label>
+                    </HBox>
+                    <VBox width="80%" >
+                        <Input value="{/GroupName}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleGroupList"  id="GroupName"></Input>
+                    </VBox>
+                </VBox>
+                
+                <VBox width="30%" class="sapUiTinyMarginBottom">
+                    <HBox width="100%">
+                      <Label text="Federal/Tax ID" class="">
+                      </Label>
+                    </HBox>
+                    <VBox width="80%" >
+                        <Input value="{/FTaxID}"  id="FTaxID"></Input>
+                    </VBox>
+                </VBox>
+                
+                <VBox width="30%" class="sapUiTinyMarginBottom">
+                    <HBox width="100%">
+                      
+                    </HBox>
+                    <VBox width="80%" >
+                       
+                    </VBox>
+                </VBox>
+                
+            </HBox>
+            
+            <HBox width="100%" justifyContent="Start" class="sapUiSmallMarginCompact">
+                <VBox width="30%" class="sapUiTinyMarginBottom">
+                    <HBox width="100%">
+                      <Label text="Local Tax Office No." class="">
+                      </Label>
+                    </HBox>
+                    <VBox width="80%" >
+                        <Input value="{/U_LTOffNo}"  id="U_LTOffNo"></Input>
+                    </VBox>
+                </VBox>
+                
+                <VBox width="30%" class="sapUiTinyMarginBottom">
+                    <HBox width="100%">
+                      <Label text="VAT Code" class="">
+                      </Label>
+                    </HBox>
+                    <VBox width="80%" >
+                        <Input value="{/U_VATCode}"  id="U_VATCode"></Input>
+                    </VBox>
+                </VBox>
+                
+                <VBox width="30%" class="sapUiTinyMarginBottom">
+                    <HBox width="100%">
+                      <Label text="UK Gift Aid Start Date" class="">
+                      </Label>
+                    </HBox>
+                    <VBox width="80%" >
+                        <Input value="{/U_UKStart}" type="Date"  id="U_UKStart"></Input>
+                    </VBox>
+                </VBox>
+                
+                <VBox width="30%" class="sapUiTinyMarginBottom">
+                    <HBox width="100%">
+                      <Label text="UK Gift Aid End Date" class="">
+                      </Label>
+                    </HBox>
+                    <VBox width="80%" >
+                        <Input value="{/U_UKEnd}" type="Date"  id="U_UKEnd"></Input>
+                    </VBox>
+                </VBox>
+                
+                <VBox width="30%" class="sapUiTinyMarginBottom">
+                    <HBox width="100%">
+                      
+                    </HBox>
+                    <VBox width="80%" >
+                       
+                    </VBox>
+                </VBox>
+            </HBox>
+    	 
+    	 <HBox width="100%" justifyContent="Start" class="sapUiSmallMarginCompact">
+    	    <IconTabBar
+    	        id="idIconTabBarNoIcons"
+		        expanded="{device>/isNoPhone}"
+		        class="sapUiSmallMarginCompact  sapUiResponsiveContentPadding">
+		        <items>
+			<!--<IconTabFilter
+				text="General Details">
+			
+			</IconTabFilter>-->
+			
+			<IconTabFilter text="Contact Persons">
+			    <Button text="Add Contact Person" press="handleAddCntPerRow" type="Emphasized" class="AddRowBtn"></Button>
+          <HBox width="100%" justifyContent="Start">
+            <Table id="idContactPersons" inset="false" mode="MultiSelect" multiselect="false" items="{/ContactPersons}">
+							<columns>
+							<!-- minScreenWidth="Tablet" -->
+							 <Column width="0%" demandPopin="true">
+									 <Text text="S.No." visible="false"/> 
+								</Column> 
+								<Column width="12%" demandPopin="true">
+									 <Text text="Contact Person ID" /> 
+								</Column>
+								<Column width="12%" demandPopin="true">
+									<Text text="First Name" />
+								</Column>
+								<Column width="12%" demandPopin="true">
+									<Text text="Middle Name" />
+								</Column>
+								<Column width="12%" demandPopin="true">
+									<Text text="Last Name" />
+								</Column>
+								<Column width="11%" demandPopin="true">
+									<Text text="Telephone No." />
+								</Column>
+								<Column width="13%" demandPopin="true">
+									<Text text="EMail ID" />
+								</Column>
+								<Column width="13%" demandPopin="true">
+									<Text text="Remarks" />
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+									    <Input value="{LineId}" visible="false" />
+                                    <!--<Input value="{U_RevenSub}" showValueHelp="true" valueHelpRequest="handleDim2" />-->
+										<Input value="{U_IKCNTPER}" />
+										<Input value="{U_IKFRNM}" />
+										<Input value="{U_IKMDNM}" />
+										<Input value="{U_IKLSNM}" />
+										<Input value="{U_IKTELNO}" />
+										<Input value="{U_IKEMAIL}" />
+										<Input value="{U_IKRMKS}" />
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+          </HBox> 
+			</IconTabFilter>
+			
+			<IconTabFilter text="Address">
+			    <Button text="Add New Address" press="handleAddAddressRow" type="Emphasized" class="AddRowBtn"></Button>
+          <HBox width="100%" justifyContent="Start">
+            <Table id="idAddress" inset="false" mode="MultiSelect" multiselect="false" items="{/Address}">
+							<columns>
+							<!-- minScreenWidth="Tablet" -->
+							    <Column width="0%" demandPopin="true">
+									 <Text text="S.No." visible="false" /> 
+								</Column> 
+								<Column width="12%" demandPopin="true">
+									 <Text text="Address ID" /> 
+								</Column>
+								<Column width="12%" demandPopin="true">
+									<Text text="Street No." />
+								</Column>
+								<Column width="12%" demandPopin="true">
+									<Text text="Street" />
+								</Column>
+								<Column width="12%" demandPopin="true">
+									<Text text="Block" />
+								</Column>
+								<Column width="11%" demandPopin="true">
+									<Text text="City" />
+								</Column>
+								<!--<Column width="13%" demandPopin="true">
+									<Text text="State" />
+								</Column>-->
+								<Column width="13%" demandPopin="true">
+									<Text text="County/Province" />
+								</Column>
+								<Column width="13%" demandPopin="true">
+									<Text text="ZipCode" />
+								</Column>
+								<Column width="13%" demandPopin="true">
+									<Text text="Country" />
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+									    <Input value="{LineId}" visible="false" />
+                                    <!--<Input value="{U_RevenSub}" showValueHelp="true" valueHelpRequest="handleDim2" />-->
+										<Input value="{U_IKADDID}" />
+										<Input value="{U_IKSTNO}" />
+										<Input value="{U_IKSTRT}" />
+										<Input value="{U_IKBLCK}" />
+										<Input value="{U_IKCITY}" />
+										<!--<Input value="{State}" />-->
+										<Input value="{U_IKPROV}" />
+										<Input value="{U_IKZIP}" />
+										<Input value="{U_IKCNTRY}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleCountryList" />
+										
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+          </HBox> 
+			</IconTabFilter>
+			
+			</items>
+		  </IconTabBar>
+		  </HBox>
+		  <!--<Button text="Save" press="handleSaveDonor" type="Emphasized" class="sapUiSmallMarginTop sapUiSmallMarginLeft SaveGrantBtn"></Button>-->
+    	 </VBox>
+    
+    <footer>
+            <OverflowToolbar id="otbFooter">
+                <ToolbarSpacer/>
+                <Button text="Go to Main Menu" press="handlegoBack"  width="13%"  class="" />
+                <Button text="Save" press="handleSaveDonor" type="Accept" class="sapUiSmallMargin SaveGrantBtn">
+                    <layoutData><OverflowToolbarLayoutData moveToOverflow="false" /></layoutData>
+                </Button>
+                
+                <!--<Button type="Reject" text="Reject">
+                    <layoutData><OverflowToolbarLayoutData moveToOverflow="false" /></layoutData>
+                </Button>-->
+                
+                <!--<OverflowToolbarButton text="Delete" icon="sap-icon://delete"/>
+                <OverflowToolbarButton text="Edit" icon="sap-icon://edit"/>
+                <OverflowToolbarButton text="Add" icon="sap-icon://add"/>
+                <OverflowToolbarButton text="Favorite" icon="sap-icon://favorite"/>
+                <OverflowToolbarButton text="Flag" icon="sap-icon://flag"/>-->
+ 
+            </OverflowToolbar>
+		</footer>
+		
+	</Page>
+</core:View>

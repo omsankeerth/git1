@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="GrantContract_User" defaultClient="crossClient" defaultLanguage="$$language$$" hidden="false" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE">
+  <descriptions defaultDescription=""/>
+  <metadata changedAt="2014-05-30 16:16:46.344"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+        <viewAttribute id="COL" datatype="NVARCHAR" length="50"/>
+      
+        <viewAttribute id="USER_CODE" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_NAME" datatype="NVARCHAR" length="100"/>
+        <viewAttribute id="E_Mail" datatype="NVARCHAR" length="100"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+ 	 var_out = 
+			SELECT 1 As COL,&quot;USER_CODE&quot;,&quot;U_NAME&quot;,&quot;E_Mail&quot; From &quot;CMD&quot;.&quot;OUSR&quot;
+			Order By &quot;U_NAME&quot; 
+			;
+ END 
+ /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+    
+      <attribute id="USER_CODE" order="2">
+    
+        <keyMapping columnObjectName="Script_View" columnName="USER_CODE"/>
+    
+      </attribute>
+      <attribute id="U_NAME" order="3">
+        <keyMapping columnObjectName="Script_View" columnName="U_NAME"/>
+      </attribute>
+      <attribute id="E_Mail" order="4">
+        <keyMapping columnObjectName="Script_View" columnName="E_Mail"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="COL" order="1" aggregationType="count" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="COL"/>
+      </measure></baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

@@ -1,0 +1,61 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:exa="org.edu.ui.controls" xmlns:core="sap.ui.core" xmlns:c="sap.ui.core"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ui="sap.ui"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog showHeader="true" title="Donor Master" class="sapUiSizeCompact"
+		contentHeight="auto" confirm="handleCustOk" contentWidth="90%">
+		<subHeader class="sapUiSmallMarginBegin">
+			<Toolbar>
+				<SearchField
+					liveChange="onSearchBack"
+					width="50%"/>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<Table id="DonorListTableBack" mode="SingleSelectMaster" inset="false" items="{/DonorList}"   itemPress="handleCustOk_Back">
+				<columns>
+				    <Column minScreenWidth="Tablet" demandPopin="true" visible="hidden">
+						<Text text="COL" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="CustomerCode" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="CustomerName" type="Navigation" press="handleCustOk"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Contact No." />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="EMail" />
+					</Column>
+					<!--<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="ContactPerson" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="ContactNo." />
+					</Column>-->
+				</columns>
+				<items >
+					<ColumnListItem type="Active" >
+						<cells>
+					    	<Text text="{COL}" />
+							<Text text="{Code}" />
+							<Text text="{Name}" />
+							<Text text="{U_IKPHNO}" />
+							<Text text="{U_IKEMAIL}" />
+							<!--<Text text="{CntctPrsn}" />
+							<Text text="{Cellular}" />-->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+    <buttons>
+        <!--<Button text="Ok" press="handleCustOk" />-->
+        <Button text="Close" press="handleCustClose_Back" />
+        <Button text="Add New Entry" press="handleAddNewDonor" />
+    </buttons>
+	</Dialog>
+
+</core:FragmentDefinition>

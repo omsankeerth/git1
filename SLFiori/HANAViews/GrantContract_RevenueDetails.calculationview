@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="GrantContract_RevenueDetails" defaultClient="crossClient" defaultLanguage="$$language$$" hidden="false" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE">
+  <descriptions defaultDescription=""/>
+  <metadata changedAt="2014-05-30 16:16:46.344"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+        <viewAttribute id="DocEntry" datatype="NVARCHAR" length="50"/>
+      
+        <viewAttribute id="U_RevenSub" datatype="NVARCHAR" length="50"/>
+      
+        <viewAttribute id="U_RevenLoc" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_RevenTyp" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_RevenPgm" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_RevnGPgm" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_PaySch" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_PayDue" datatype="NVARCHAR" length="15"/>
+        <viewAttribute id="U_Amount" datatype="DOUBLE"/>
+        <viewAttribute id="LineId" datatype="INTEGER"/>
+      
+        <viewAttribute id="U_SOPost" datatype="NVARCHAR" length="20"/>
+      
+        <viewAttribute id="U_ReSubNm" datatype="NVARCHAR" length="100"/>
+        <viewAttribute id="U_ReLocNm" datatype="NVARCHAR" length="100"/>
+        <viewAttribute id="U_RePgmNm" datatype="NVARCHAR" length="100"/>
+      
+        <viewAttribute id="U_Remarks" datatype="NVARCHAR" length="240"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+ 	 var_out = 
+			SELECT A0.&quot;DocEntry&quot;
+			,A1.&quot;U_RevenSub&quot;
+			,A1.&quot;U_RevenLoc&quot;,A1.&quot;U_RevenTyp&quot;,A1.&quot;U_RevenPgm&quot;,A1.&quot;U_RevnGPgm&quot;,A1.&quot;U_PaySch&quot;
+			,CAST(A1.&quot;U_PayDue&quot; AS Nvarchar(10)) &quot;U_PayDue&quot;,A1.&quot;U_Amount&quot;,A1.&quot;LineId&quot;
+			,A1.&quot;U_SOPost&quot;,A1.&quot;U_ReSubNm&quot;,A1.&quot;U_ReLocNm&quot;,A1.&quot;U_RePgmNm&quot;,A1.&quot;U_Remarks&quot;
+			FROM &quot;CMD&quot;.&quot;@IK_GNCT&quot; A0 Inner Join &quot;CMD&quot;.&quot;@IK_NCT1&quot; A1 ON A0.&quot;DocEntry&quot;=A1.&quot;DocEntry&quot;
+			Order By A1.&quot;LineId&quot; 
+			;
+ END 
+ /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+    
+      <attribute id="U_RevenSub" order="2">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_RevenSub"/>
+    
+      </attribute>
+    
+      <attribute id="U_RevenLoc" order="3">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_RevenLoc"/>
+    
+      </attribute>
+      <attribute id="U_RevenTyp" order="4">
+        <keyMapping columnObjectName="Script_View" columnName="U_RevenTyp"/>
+      </attribute>
+      <attribute id="U_RevenPgm" order="5">
+        <keyMapping columnObjectName="Script_View" columnName="U_RevenPgm"/>
+      </attribute>
+      <attribute id="U_RevnGPgm" order="6">
+        <keyMapping columnObjectName="Script_View" columnName="U_RevnGPgm"/>
+      </attribute>
+      <attribute id="U_PaySch" order="7">
+        <keyMapping columnObjectName="Script_View" columnName="U_PaySch"/>
+      </attribute>
+      <attribute id="U_PayDue" order="8">
+        <keyMapping columnObjectName="Script_View" columnName="U_PayDue"/>
+      </attribute>
+    
+      <attribute id="U_SOPost" order="11">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_SOPost"/>
+    
+      </attribute>
+    
+      <attribute id="U_ReSubNm" order="12">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_ReSubNm"/>
+    
+      </attribute>
+      <attribute id="U_ReLocNm" order="13">
+        <keyMapping columnObjectName="Script_View" columnName="U_ReLocNm"/>
+      </attribute>
+      <attribute id="U_RePgmNm" order="14">
+        <keyMapping columnObjectName="Script_View" columnName="U_RePgmNm"/>
+      </attribute>
+    
+      <attribute id="U_Remarks" order="15">
+        <keyMapping columnObjectName="Script_View" columnName="U_Remarks"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="DocEntry" order="1" aggregationType="count" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="DocEntry"/>
+      </measure>
+      <measure id="U_Amount" order="9" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="U_Amount"/>
+      </measure>
+      <measure id="LineId" order="10" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="LineId"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

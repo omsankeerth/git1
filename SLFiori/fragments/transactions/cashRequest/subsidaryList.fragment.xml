@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:exa="org.edu.ui.controls" xmlns:core="sap.ui.core" xmlns:c="sap.ui.core"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ui="sap.ui"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog showHeader="false" class="sapUiSizeCompact"
+		contentHeight="auto" contentWidth="90%">
+		
+		<subHeader class="sapUiSmallMarginBegin">
+			<Toolbar>
+				<SearchField
+					liveChange="onDim2Search"
+					width="50%"/>
+			</Toolbar>
+		</subHeader>
+		
+		<content>
+			<Table id="SubsidaryListTable" mode="SingleSelectMaster" inset="false" items="{/SubsidaryList}">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Subsidary Code" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Subsidary Name" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Manager" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Mail ID" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{SubCode}" />
+							<Text text="{SubName}" />
+							<Text text="{Manager}" />
+							<Text text="{EMail}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+    <buttons>
+        <Button text="Ok" press="handleSubsidaryOk" />
+        <Button text="Close" press="handleSubsidaryClose" />
+    </buttons>
+	</Dialog>
+
+</core:FragmentDefinition>

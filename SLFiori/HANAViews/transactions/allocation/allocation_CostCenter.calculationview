@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="allocation_CostCenter" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE" dimensionType="STANDARD" schemaVersion="2.3" defaultClient="$$client$$" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" scriptParametersCaseSensitive="true" enforceSqlExecution="false">
+<descriptions defaultDescription="CostCenter"/>
+<localVariables/>
+<variableMappings/>
+<dataSources/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+    <viewAttributes>
+      <viewAttribute id="COL" datatype="INTEGER"/>
+    
+      <viewAttribute id="CCCode" datatype="NVARCHAR" length="25"/>
+      <viewAttribute id="CCName" datatype="NVARCHAR" length="50"/>
+      <viewAttribute id="DMCode" datatype="NVARCHAR" length="10"/>
+      <viewAttribute id="DMName" datatype="NVARCHAR" length="50"/>
+    
+      <viewAttribute id="U_GrCur" datatype="NVARCHAR" length="20"/>
+      <viewAttribute id="U_Mangr" datatype="NVARCHAR" length="100"/>
+      <viewAttribute id="U_ExtText" datatype="NVARCHAR" length="247"/>
+      <viewAttribute id="U_ParPgm" datatype="NVARCHAR" length="50"/>
+    
+      <viewAttribute id="U_GrRes" datatype="NVARCHAR" length="50"/>
+    
+      <viewAttribute id="U_SubCode" datatype="NVARCHAR" length="20"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <definition>/********* Begin Procedure Script ************/ 
+BEGIN 
+   var_out = 
+   SELECT 1 As COL, A0.&quot;PrcCode&quot; As &quot;CCCode&quot;,A0.&quot;PrcName&quot; As &quot;CCName&quot;,A0.&quot;DimCode&quot; As &quot;DMCode&quot;
+   ,A1.&quot;DimDesc&quot; As &quot;DMName&quot;,A0.&quot;U_GrCur&quot; ,A0.&quot;U_Mangr&quot; 
+   ,A0.&quot;U_ExtText&quot; ,A0.&quot;U_ParPgm&quot;,A0.&quot;U_GrRes&quot;,A0.&quot;U_SubCode&quot;
+   FROM &quot;CMD&quot;.&quot;OPRC&quot; A0 INNER JOIN &quot;CMD&quot;.&quot;ODIM&quot; A1 ON A0.&quot;DimCode&quot;=A1.&quot;DimCode&quot;
+   ;
+
+END /********* End Procedure Script ************/</definition>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Script_View">
+  <attributes>
+    <attribute id="CCCode" order="2">
+      <keyMapping columnObjectName="Script_View" columnName="CCCode"/>
+    </attribute>
+    <attribute id="CCName" order="3">
+      <keyMapping columnObjectName="Script_View" columnName="CCName"/>
+    </attribute>
+    <attribute id="DMCode" order="4">
+      <keyMapping columnObjectName="Script_View" columnName="DMCode"/>
+    </attribute>
+    <attribute id="DMName" order="5">
+      <keyMapping columnObjectName="Script_View" columnName="DMName"/>
+    </attribute>
+  
+    <attribute id="U_GrCur" order="6">
+  
+      <keyMapping columnObjectName="Script_View" columnName="U_GrCur"/>
+  
+    </attribute>
+    <attribute id="U_Mangr" order="7">
+      <keyMapping columnObjectName="Script_View" columnName="U_Mangr"/>
+    </attribute>
+    <attribute id="U_ExtText" order="8">
+      <keyMapping columnObjectName="Script_View" columnName="U_ExtText"/>
+    </attribute>
+    <attribute id="U_ParPgm" order="9">
+      <keyMapping columnObjectName="Script_View" columnName="U_ParPgm"/>
+    </attribute>
+  
+    <attribute id="U_GrRes" order="10">
+  
+      <keyMapping columnObjectName="Script_View" columnName="U_GrRes"/>
+  
+    </attribute>
+  
+    <attribute id="U_SubCode" order="11">
+  
+      <keyMapping columnObjectName="Script_View" columnName="U_SubCode"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="COL" order="1" aggregationType="count" measureType="simple">
+      <descriptions defaultDescription="COL"/>
+      <measureMapping columnObjectName="Script_View" columnName="COL"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

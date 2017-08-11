@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="SAP_UNITPRICE" defaultClient="crossClient" defaultLanguage="$$language$$" hidden="false" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE">
+  <descriptions defaultDescription=""/>
+  <metadata changedAt="2014-05-30 16:16:46.344"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+        <viewAttribute datatype="NVARCHAR" id="ItemCode" length="50"/>
+        <viewAttribute id="AvgPrice" datatype="DOUBLE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN  
+ 	 var_out = 
+			SELECT A0.&quot;ItemCode&quot;,A1.&quot;AvgPrice&quot; 
+			FROM &quot;CMD&quot;.&quot;OITM&quot; A0 
+			INNER JOIN &quot;CMD&quot;.&quot;OITW&quot; A1 ON A0.&quot;ItemCode&quot;=A1.&quot;ItemCode&quot;;
+ END 
+ /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes/>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="ItemCode" aggregationType="count" measureType="simple" order="1">
+        <descriptions defaultDescription="Code"/>
+        <measureMapping columnObjectName="Script_View" columnName="ItemCode"/>
+      </measure>
+    
+      <measure id="AvgPrice" order="2" aggregationType="sum" measureType="simple">
+    
+        <measureMapping columnObjectName="Script_View" columnName="AvgPrice"/>
+    
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

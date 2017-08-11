@@ -1,0 +1,68 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:exa="SLFiori.controls" xmlns:core="sap.ui.core" xmlns:c="sap.ui.core"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ui="sap.ui"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog showHeader="false" class="sapUiSizeCompact"
+		contentHeight="auto" contentWidth="90%">
+		
+		<subHeader class="sapUiSmallMarginBegin">
+			<Toolbar>
+				<SearchField
+					liveChange="onFreezeSearch"
+					width="50%"/>
+			</Toolbar>
+		</subHeader>
+		
+		<content>
+			<Table id="GetFreezingNumTable" mode="SingleSelectMaster" inset="false" items="{/FreezingNumList}">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true" >
+						<Text text="Internal ID" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Grant Code"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Grant Name" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Grant Creation Date" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Donor Name" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Freezing Type" />
+					</Column>
+					<!--<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Grant Type" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Grant Currency" />
+					</Column>-->
+					
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{DocEntry}" />
+							<Text text="{U_GCode}" />
+							<Text text="{U_GName}" />
+							<Text text="{GrantCreateDate}" />
+							<Text text="{U_DnrNam}" />
+							<Text text="{U_FRType}" />
+							<!--<Text text="{U_GCType}" />
+							<Text text="{U_GrantCur}" />-->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+    <buttons>
+        <Button text="Ok" press="handleFreezingOk" />
+        <Button text="Close" press="handleFreezingClose" />
+        <!--<Button text="Add New Entry" press="handleNewFreezingEntry" />-->
+    </buttons>
+	</Dialog>
+
+</core:FragmentDefinition>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="allocation_Header" defaultClient="crossClient" defaultLanguage="$$language$$" hidden="false" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE">
+  <descriptions defaultDescription=""/>
+  <metadata changedAt="2014-05-30 16:16:46.344"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+        <viewAttribute id="DocEntry" datatype="NVARCHAR" length="50"/>
+        <viewAttribute datatype="NVARCHAR" id="DocNum" length="50"/>
+        <viewAttribute id="U_GCrDate" datatype="NVARCHAR" length="15" hidden="true"/>
+        <viewAttribute id="U_Status" datatype="NVARCHAR" length="50" hidden="true"/>
+        <viewAttribute id="GCode" datatype="NVARCHAR" length="50"/>
+      
+        <viewAttribute id="U_GName" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_GrantCur" datatype="NVARCHAR" length="20" hidden="true"/>
+        <viewAttribute id="U_GrRes" datatype="NVARCHAR" length="50" hidden="true"/>
+      
+        <viewAttribute id="U_GrFinMan" datatype="NVARCHAR" length="50" hidden="true"/>
+        <viewAttribute id="U_GMan" datatype="NVARCHAR" length="50" hidden="true"/>
+        <viewAttribute id="U_GCNum" datatype="NVARCHAR" length="10"/>
+        <viewAttribute id="U_GCAmnt" datatype="DOUBLE"/>
+        <viewAttribute id="U_AlcAmnt" datatype="DOUBLE"/>
+        <viewAttribute id="U_AlAmUSD" datatype="DOUBLE"/>
+        <viewAttribute id="U_AlcFrDt" datatype="NVARCHAR" length="15"/>
+        <viewAttribute id="U_AlcToDt" datatype="NVARCHAR" length="15"/>
+      
+        <viewAttribute id="U_DnrCod" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_DnrNam" datatype="NVARCHAR" length="100" hidden="true"/>
+        <viewAttribute id="U_DSFDCId" datatype="NVARCHAR" length="50" hidden="true"/>
+      
+        <viewAttribute id="U_GCType" datatype="NVARCHAR" length="50" hidden="true"/>
+        <viewAttribute id="U_GCFrom" datatype="NVARCHAR" length="15" hidden="true"/>
+        <viewAttribute id="U_GCTo" datatype="NVARCHAR" length="15" hidden="true"/>
+        <viewAttribute id="U_Rmks" datatype="NVARCHAR" length="247" hidden="true"/>
+        <viewAttribute id="U_AllCrDt" datatype="NVARCHAR" length="15"/>
+      
+        <viewAttribute id="U_ExRate" datatype="DECIMAL" length="16" scale="2"/>
+        <viewAttribute id="U_ReAllc" datatype="NVARCHAR" length="10"/>
+        <viewAttribute id="U_ReAllcEnt" datatype="INTEGER"/>
+        <viewAttribute id="U_BSAllcNo" datatype="INTEGER"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+ 	 var_out = 
+			SELECT A0.&quot;DocEntry&quot;,A0.&quot;DocNum&quot;
+,CAST(A0.&quot;U_GCrDate&quot; AS Nvarchar(10)) &quot;U_GCrDate&quot;,A0.&quot;U_Status&quot;,A0.&quot;U_GCode&quot; &quot;GCode&quot;,A0.&quot;U_GName&quot;,A0.&quot;U_GrantCur&quot;
+,A0.&quot;U_GrRes&quot;,A0.&quot;U_GrFinMan&quot;,A0.&quot;U_GMan&quot;,A0.&quot;U_GCNum&quot;,A0.&quot;U_GCAmnt&quot;,A0.&quot;U_AlcAmnt&quot;,A0.&quot;U_AlAmUSD&quot;
+,CAST(A0.&quot;U_AlcFrDt&quot; AS Nvarchar(10)) &quot;U_AlcFrDt&quot;
+,CAST(A0.&quot;U_AlcToDt&quot; AS Nvarchar(10)) &quot;U_AlcToDt&quot;
+ ,A0.&quot;U_DnrCod&quot;,A0.&quot;U_DnrNam&quot;,A0.&quot;U_DSFDCId&quot;,A0.&quot;U_GCType&quot;
+,CAST(A0.&quot;U_GCFrom&quot; AS Nvarchar(10)) &quot;U_GCFrom&quot;,CAST(A0.&quot;U_GCTo&quot; AS Nvarchar(10)) &quot;U_GCTo&quot;,A0.&quot;U_Rmks&quot;			
+,CAST(A0.&quot;U_AllCrDt&quot; AS Nvarchar(10)) &quot;U_AllCrDt&quot;
+,A0.&quot;U_ExRate&quot;,A0.&quot;U_ReAllc&quot;,A0.&quot;U_ReAllcEnt&quot;,A0.&quot;U_BSAllcNo&quot;
+FROM &quot;CMD&quot;.&quot;@IK_GRALC&quot; A0 ;
+
+ END 
+ /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+      <attribute id="U_GCrDate" order="3" semanticType="empty" hidden="true">
+        <keyMapping columnObjectName="Script_View" columnName="U_GCrDate"/>
+      </attribute>
+      <attribute id="U_Status" order="4" hidden="true">
+        <keyMapping columnObjectName="Script_View" columnName="U_Status"/>
+      </attribute>
+      <attribute id="GCode" order="5" semanticType="empty">
+        <descriptions defaultDescription="Grant Code"/>
+        <keyMapping columnObjectName="Script_View" columnName="GCode"/>
+      </attribute>
+      <attribute id="U_GName" order="6">
+        <descriptions defaultDescription="Grant Name"/>
+        <keyMapping columnObjectName="Script_View" columnName="U_GName"/>
+      </attribute>
+      <attribute id="U_GrantCur" order="7" hidden="true">
+        <keyMapping columnObjectName="Script_View" columnName="U_GrantCur"/>
+      </attribute>
+      <attribute id="U_GrRes" order="8" hidden="true">
+        <keyMapping columnObjectName="Script_View" columnName="U_GrRes"/>
+      </attribute>
+    
+      <attribute id="U_GrFinMan" order="9" hidden="true">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_GrFinMan"/>
+    
+      </attribute>
+      <attribute id="U_GMan" order="10" hidden="true">
+        <keyMapping columnObjectName="Script_View" columnName="U_GMan"/>
+      </attribute>
+      <attribute id="U_GCNum" order="11">
+        <keyMapping columnObjectName="Script_View" columnName="U_GCNum"/>
+      </attribute>
+      <attribute id="U_AlcFrDt" order="15">
+        <keyMapping columnObjectName="Script_View" columnName="U_AlcFrDt"/>
+      </attribute>
+      <attribute id="U_AlcToDt" order="16">
+        <keyMapping columnObjectName="Script_View" columnName="U_AlcToDt"/>
+      </attribute>
+    
+      <attribute id="U_DnrCod" order="17">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_DnrCod"/>
+    
+      </attribute>
+      <attribute id="U_DnrNam" order="18" hidden="true">
+        <keyMapping columnObjectName="Script_View" columnName="U_DnrNam"/>
+      </attribute>
+      <attribute id="U_DSFDCId" order="19" hidden="true">
+        <keyMapping columnObjectName="Script_View" columnName="U_DSFDCId"/>
+      </attribute>
+    
+      <attribute id="U_GCType" order="20" hidden="true">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_GCType"/>
+    
+      </attribute>
+      <attribute id="U_GCFrom" order="21" semanticType="empty" hidden="true">
+        <keyMapping columnObjectName="Script_View" columnName="U_GCFrom"/>
+      </attribute>
+      <attribute id="U_GCTo" order="22" semanticType="empty" hidden="true">
+        <keyMapping columnObjectName="Script_View" columnName="U_GCTo"/>
+      </attribute>
+      <attribute id="U_Rmks" order="23" hidden="true">
+        <keyMapping columnObjectName="Script_View" columnName="U_Rmks"/>
+      </attribute>
+      <attribute id="U_AllCrDt" order="24">
+        <keyMapping columnObjectName="Script_View" columnName="U_AllCrDt"/>
+      </attribute>
+    
+      <attribute id="U_ReAllc" order="26">
+        <keyMapping columnObjectName="Script_View" columnName="U_ReAllc"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="DocEntry" order="1" aggregationType="count" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="DocEntry"/>
+      </measure>
+      <measure id="DocNum" aggregationType="count" measureType="simple" order="2">
+        <descriptions defaultDescription="DocNum"/>
+        <measureMapping columnObjectName="Script_View" columnName="DocNum"/>
+      </measure>
+      <measure id="U_GCAmnt" order="12" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="U_GCAmnt"/>
+      </measure>
+      <measure id="U_AlcAmnt" order="13" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="U_AlcAmnt"/>
+      </measure>
+      <measure id="U_AlAmUSD" order="14" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="U_AlAmUSD"/>
+      </measure>
+    
+      <measure id="U_ExRate" order="25" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="U_ExRate"/>
+      </measure>
+      <measure id="U_ReAllcEnt" order="27" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="U_ReAllcEnt"/>
+      </measure>
+      <measure id="U_BSAllcNo" order="28" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="U_BSAllcNo"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

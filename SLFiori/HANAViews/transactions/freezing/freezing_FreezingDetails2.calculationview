@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="freezing_FreezingDetails2" defaultClient="crossClient" defaultLanguage="$$language$$" hidden="false" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE">
+  <descriptions defaultDescription=""/>
+  <metadata changedAt="2014-05-30 16:16:46.344"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+        <viewAttribute id="DocEntry" datatype="NVARCHAR" length="50"/>
+      
+        <viewAttribute id="U_SubCod" datatype="NVARCHAR" length="50"/>
+      
+        <viewAttribute id="U_SubNm" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_LocCod" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_LocNm" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_PgmCod" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_PgmNm" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_PrPgCd" datatype="NVARCHAR" length="30"/>
+        <viewAttribute id="U_PrPgm" datatype="NVARCHAR" length="50"/>
+      
+        <viewAttribute id="U_GrInit" datatype="NVARCHAR" length="20"/>
+      
+        <viewAttribute id="U_GrIntNm" datatype="NVARCHAR" length="10"/>
+      
+        <viewAttribute id="U_GrCur" datatype="NVARCHAR" length="10"/>
+        <viewAttribute id="U_Amnt" datatype="DOUBLE"/>
+        <viewAttribute id="U_AmntUSD" datatype="DOUBLE"/>
+        <viewAttribute id="U_Actvty" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_Manager" datatype="NVARCHAR" length="100"/>
+      
+        <viewAttribute id="U_CF" datatype="NVARCHAR" length="50"/>
+      
+        <viewAttribute id="LineId" datatype="INTEGER"/>
+        <viewAttribute id="U_BsLine" datatype="INTEGER"/>
+        <viewAttribute id="U_ExAmLC" datatype="DOUBLE"/>
+        <viewAttribute id="U_ExAmUSD" datatype="DOUBLE"/>
+        <viewAttribute id="U_ExAmGC" datatype="DOUBLE"/>
+      
+        <viewAttribute id="U_Validated" datatype="NVARCHAR" length="10"/>
+        <viewAttribute id="U_MngCd" datatype="NVARCHAR" length="30"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+ 	 var_out = 
+			SELECT A0.&quot;DocEntry&quot;
+			,A1.&quot;U_SubCod&quot;
+			,A1.&quot;U_SubNm&quot;,A1.&quot;U_LocCod&quot;,A1.&quot;U_LocNm&quot;,A1.&quot;U_PgmCod&quot;,A1.&quot;U_PgmNm&quot;
+			,A1.&quot;U_PrPgCd&quot;,A1.&quot;U_PrPgm&quot;,A1.&quot;U_GrInit&quot;,A1.&quot;U_GrIntNm&quot;,A1.&quot;U_GrCur&quot;,A1.&quot;U_Amnt&quot;,A1.&quot;U_AmntUSD&quot;
+			,A1.&quot;U_Actvty&quot;
+			,A1.&quot;U_Manager&quot;,A1.&quot;U_CF&quot;
+			,A1.&quot;LineId&quot;,A1.&quot;U_BsLine&quot; As &quot;U_BsLine&quot;
+			,A1.&quot;U_ExAmLC&quot;,A1.&quot;U_ExAmUSD&quot;,A1.&quot;U_ExAmGC&quot;
+			,'No' As &quot;U_Validated&quot;
+			,A1.&quot;U_MngCd&quot;
+			FROM &quot;CMD&quot;.&quot;@IK_GRFZ&quot; A0 Inner Join &quot;CMD&quot;.&quot;@IK_RFZ2&quot; A1 ON A0.&quot;DocEntry&quot;=A1.&quot;DocEntry&quot;
+			Order By A1.&quot;LineId&quot; 
+			;
+ END 
+ /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+    
+      <attribute id="U_SubCod" order="2">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_SubCod"/>
+    
+      </attribute>
+    
+      <attribute id="U_SubNm" order="3">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_SubNm"/>
+    
+      </attribute>
+      <attribute id="U_LocCod" order="4">
+        <keyMapping columnObjectName="Script_View" columnName="U_LocCod"/>
+      </attribute>
+      <attribute id="U_LocNm" order="5">
+        <keyMapping columnObjectName="Script_View" columnName="U_LocNm"/>
+      </attribute>
+      <attribute id="U_PgmCod" order="6">
+        <keyMapping columnObjectName="Script_View" columnName="U_PgmCod"/>
+      </attribute>
+      <attribute id="U_PgmNm" order="7">
+        <keyMapping columnObjectName="Script_View" columnName="U_PgmNm"/>
+      </attribute>
+      <attribute id="U_PrPgCd" order="8">
+        <keyMapping columnObjectName="Script_View" columnName="U_PrPgCd"/>
+      </attribute>
+      <attribute id="U_PrPgm" order="9">
+        <keyMapping columnObjectName="Script_View" columnName="U_PrPgm"/>
+      </attribute>
+    
+      <attribute id="U_GrInit" order="10">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_GrInit"/>
+    
+      </attribute>
+    
+      <attribute id="U_GrIntNm" order="11">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_GrIntNm"/>
+    
+      </attribute>
+    
+      <attribute id="U_GrCur" order="12">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_GrCur"/>
+    
+      </attribute>
+      <attribute id="U_Actvty" order="15">
+        <keyMapping columnObjectName="Script_View" columnName="U_Actvty"/>
+      </attribute>
+      <attribute id="U_Manager" order="16">
+        <keyMapping columnObjectName="Script_View" columnName="U_Manager"/>
+      </attribute>
+    
+      <attribute id="U_CF" order="17">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_CF"/>
+    
+      </attribute>
+    
+      <attribute id="U_Validated" order="23">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_Validated"/>
+    
+      </attribute>
+      <attribute id="U_MngCd" order="24">
+        <keyMapping columnObjectName="Script_View" columnName="U_MngCd"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="DocEntry" order="1" aggregationType="count" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="DocEntry"/>
+      </measure>
+      <measure id="U_Amnt" order="13" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="U_Amnt"/>
+      </measure>
+    
+      <measure id="U_AmntUSD" order="14" aggregationType="sum" measureType="simple">
+    
+        <measureMapping columnObjectName="Script_View" columnName="U_AmntUSD"/>
+    
+      </measure>
+    
+      <measure id="LineId" order="18" aggregationType="sum" measureType="simple">
+    
+        <measureMapping columnObjectName="Script_View" columnName="LineId"/>
+    
+      </measure>
+    
+      <measure id="U_BsLine" order="19" aggregationType="sum" measureType="simple">
+    
+        <measureMapping columnObjectName="Script_View" columnName="U_BsLine"/>
+    
+      </measure>
+      <measure id="U_ExAmLC" order="20" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="U_ExAmLC"/>
+      </measure>
+      <measure id="U_ExAmUSD" order="21" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="U_ExAmUSD"/>
+      </measure>
+      <measure id="U_ExAmGC" order="22" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="U_ExAmGC"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

@@ -1,0 +1,491 @@
+<core:View
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:ui="sap.ui.table"
+	xmlns:tnt="sap.tnt"
+		controllerName="SLFiori.view.transactions.grantFreezing"
+	xmlns:c="sap.ui.commons"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="Page"
+		title="Grant Freezing (PreCash/Incoming Payments)"
+		showNavButton="true"
+		navButtonPress="onBack" enableScrolling="false">
+		<HBox id="_HBox" width="99%" height="100%" class="sapUiSmallMarginTop">
+			<VBox id="Third" width="100%" height="90%" visible="true" class="sapUiSmallMarginBegin sapUiSizeCompact SplitPage3">
+				<!-- <Button text="Add New Entry" press="handleAddEntry" type="Emphasized" class="sapUiSmallMarginRight AddEntry"></Button>-->
+				<!-- <HBox width="100%" height="10%" alignItems="End"></HBox>-->
+				<Panel expandable="true" expanded="false" headerText="General Details"  width="auto" class="">
+					<HBox width="100%" justifyContent="Start">
+						<VBox width="30%">
+							<HBox width="100%">
+								<Label text="Document Number" class=""></Label>
+							</HBox>
+							<VBox width="80%" class="txtCardCode">
+								<Input value="{/DocNum}" id="DocNum" enabled="false"></Input>
+							</VBox>
+						</VBox>
+						<VBox width="30%" >
+							<HBox width="100%">
+								<Label text="Grant Creation Date" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<DatePicker
+			        id="GCrDate" value="{/GCrDate}" valueFormat="yyyyMMdd" displayFormat="long" placeholder="Enter Date ..." />
+							</VBox >
+						</VBox>
+						<VBox width="30%" >
+							<HBox width="100%">
+								<Label text="Status" class=""></Label>
+							</HBox>
+							<!--<ComboBox selectedKey="{/Status}"
+				items="{
+					path: '/ComboList'
+				}">
+								<core:ListItem key="{key}" text="{value}" />
+							</ComboBox>-->
+							<Select id="Status" width="80%" items="{
+					path: '/ComboList'
+				}" 
+				selectedKey="{/Status}" change="onSelectionModeChange">
+								<core:Item key="{key}" text="{value}"/>
+							</Select>
+						</VBox>
+							<VBox width="30%" >
+							<HBox width="100%">
+								<Label text="Allocation Creation Date" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<DatePicker
+			        id="AllCrDt" value="{/AllCrDt}" valueFormat="yyyyMMdd" displayFormat="long" placeholder="Enter Date ..." />
+							</VBox >
+						</VBox>
+					</HBox>
+					<HBox width="100%" justifyContent="Start">
+						<VBox width="30%">
+							<HBox width="100%">
+								<Label text="Grant Name" class=""></Label>
+							</HBox>
+							<VBox width="80%" class="">
+								<Input value="{/GName}" showValueHelp="true" valueHelpRequest="handleCostCentersList"  valueHelpOnly="true" aria-autocomplete="list" id="GName" ></Input>
+							</VBox>
+						</VBox>
+						<VBox width="30%" >
+							<HBox width="100%">
+								<Label text="Grant Code" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<Input value="{/GCode}" enabled="false" id="GCode"></Input>
+							</VBox>
+						</VBox>
+						<VBox width="30%" class="">
+							<HBox width="100%">
+								<Label text="Grant Currency" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<Input value="{/GrantCur}" enabled="false" showValueHelp="true" valueHelpRequest="handleGrantCurrency"  valueHelpOnly="true" id="GrantCur" ></Input>
+							</VBox>
+						</VBox>
+						<VBox width="30%" >
+							<HBox width="100%">
+								<Label text="Grant Restricted" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<!--<Input value="{/GrRes}" id="GrRes"></Input>-->
+								<ComboBox
+				items="{/ComboRes}" selectedKey="{/GrRes}" enabled="false">
+									<core:ListItem key="{key}" text="{value}" />
+								</ComboBox>
+							</VBox>
+						</VBox>
+					</HBox>
+					<HBox width="100%" justifyContent="Start">
+						<VBox width="30%" class="">
+							<HBox width="100%">
+								<Label text="Grant Manager Name" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<Input value="{/GMan}" id="GMan" enabled="false" ></Input>
+							</VBox>
+						</VBox>
+						<VBox width="30%" class="">
+							<HBox width="100%">
+								<Label text="Grant Finance Manager" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<Input value="{/GrFinMan}" id="GrFinMan" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleUserList" ></Input>
+							</VBox>
+						</VBox>
+						<VBox width="30%" class="">
+							<HBox width="100%">
+								<Label text="Grant Contract No." class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<Input value="{/GCNum}" id="GCNum" enabled="false"></Input>
+							</VBox>
+						</VBox>
+						<VBox width="30%" class="">
+							<HBox width="100%">
+								<Label text="Grant Contract Amount" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<Input value="{/GCAmnt}" id="GCAmnt" enabled="false"></Input>
+							</VBox>
+						</VBox>
+					</HBox>
+					<HBox width="100%" justifyContent="Start">
+						<VBox width="30%" >
+							<HBox width="100%">
+								<Label text="Freezing Amount USD" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<Input value="{/AlAmUSD}" id="AlAmUSD"></Input>
+							</VBox>
+						</VBox>
+						<VBox width="30%" >
+							<HBox width="100%">
+							    <Label text="Exchange Rate" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+									<Input value="{/ExRate}" id="ExRate" enabled="false"></Input>
+							</VBox>
+						</VBox>
+						<VBox width="30%">
+							<HBox width="100%">
+								<Label text="Freezing Amt(Grant Currency)" class=""></Label>
+							</HBox>
+							<VBox width="80%" class="txtCardCode">
+								<Input value="{/AlcAmnt}" id="AlcAmnt" ></Input>
+							</VBox>
+						</VBox>
+						<VBox width="30%" >
+							<HBox width="100%">
+							<Label text="Freezing Type" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+						<Select id="FRType" width="80%" items="{
+					path: '/ComboFrType'
+				}" 
+				selectedKey="{/FRType}" change="onSelectionModeChange">
+								<core:Item key="{key}" text="{value}"/>
+							</Select>
+							</VBox>
+						</VBox>
+					</HBox>
+					<!--<HBox width="100%" justifyContent="Start">
+						<VBox width="30%" class="">
+							<HBox width="100%">
+								<Label text="Exchange Rate" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<Input value="{/ExRate}" id="ExRate" enabled="false"  ></Input>
+							</VBox>
+						</VBox>
+						<VBox width="30%" class="">
+							<HBox width="100%">
+							
+							</HBox>
+							<VBox width="80%" >
+							
+							</VBox>
+						</VBox>
+						<VBox width="30%" class="">
+							<HBox width="100%">
+								
+							</HBox>
+							<VBox width="80%" >
+								
+							</VBox>
+						</VBox>
+						<VBox width="30%" class="">
+							<HBox width="100%">
+								
+							</HBox>
+							<VBox width="80%" >
+							
+							</VBox>
+						</VBox>
+					</HBox>-->
+				</Panel>
+				<Panel expandable="true" expanded="false" headerText="Donor Information" width="auto" class="">
+					<!-- <Label text="Donor Information" class="sapUiSmallMarginTop Split3_Label2" /> -->
+					<HBox width="100%" justifyContent="Start">
+						<VBox width="30%">
+							<HBox width="100%">
+								<Label text="Donor Name" class=""></Label>
+							</HBox>
+							<VBox width="80%" class="txtCardCode">
+								<Input value="{/DnrNam}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleDonorList" id="DnrNam" ></Input>
+							</VBox>
+						</VBox>
+						<VBox width="30%" >
+							<HBox width="100%">
+								<Label text="Donor Code" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<Input value="{/DnrCod}" id="DnrCod" enabled="false"></Input>
+							</VBox>
+						</VBox>
+						<VBox width="30%" >
+							<HBox width="100%">
+								<Label text="Donor SFDC ID" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<Input value="{/DSFDCId}" id="DSFDCId"></Input>
+							</VBox>
+						</VBox>
+						<VBox width="30%" >
+							<HBox width="100%"></HBox>
+							<VBox width="80%" ></VBox>
+						</VBox>
+					</HBox>
+					<HBox width="100%" justifyContent="Start">
+						<VBox width="30%" class="">
+							<HBox width="100%">
+								<Label text="Grant Type" class=""></Label>
+							</HBox>
+							<VBox width="100%" >
+								<!--<Input value="{/GCType}" id="GCType" ></Input>-->
+								<!--<ComboBox selectedKey="{/GCType}"
+				items="{
+					path: '/ComboType'
+				}">
+									<core:ListItem key="{key}" text="{value}" />
+								</ComboBox>-->
+								<Select id="GCType" width="80%" items="{
+					path: '/ComboType'
+				}" 
+				selectedKey="{/GCType}" change="onSelectionModeChange">
+								<core:Item key="{key}" text="{value}"/>
+							</Select>
+							</VBox>
+						</VBox>
+						<VBox width="30%" class="">
+							<HBox width="100%">
+								<Label text="Grant From Date" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<!--<Input value="{/GCFrom}" type="Date" id="GCFrom" ></Input>-->
+								<DatePicker
+			        id="GCFrom" value="{/GCFrom}" valueFormat="yyyyMMdd" displayFormat="long" placeholder="Enter Date ..." change="handleChange" class=""/>
+							</VBox>
+						</VBox>
+						<VBox width="30%" class="">
+							<HBox width="100%">
+								<Label text="Grant To Date" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<!--<Input value="{/GCTo}" type="Date" id="GCTo" ></Input>-->
+								<DatePicker
+			        id="GCTo" value="{/GCTo}" valueFormat="yyyyMMdd" displayFormat="long" placeholder="Enter Date ..." change="handleChange" class=""/>
+							</VBox>
+						</VBox>
+						<VBox width="30%" class="">
+							<HBox width="100%">
+							<!--	<Label text="Grant Contract Total" class=""></Label>-->
+							</HBox>
+							<VBox width="80%" >
+							<!--	<Input value="{/GCAmt}" id="GCAmt" enabled="false"></Input> -->
+							</VBox>
+						</VBox>
+					</HBox>
+					<HBox width="100%" justifyContent="Start">
+						<VBox width="100%" class="">
+							<HBox width="100%">
+								<Label text="Remarks" class=""></Label>
+							</HBox>
+							<VBox width="90%" >
+								<Input value="{/Rmks}" id="Rmks" ></Input>
+							</VBox>
+						</VBox>
+						<!--<VBox width="30%" class=""><HBox width="100%"><Label text="Grant Realese Status" class=""></Label></HBox><VBox width="80%" ><Input value="{/GRelsSt}" id="GRelsSt" ></Input></VBox></VBox>-->
+					</HBox>
+					<HBox width="100%" justifyContent="Start">
+						<VBox width="100%" class="">
+							<HBox width="100%">
+								<Label text="Attachment" visible="false" class=""></Label>
+							</HBox>
+							<VBox width="90%" >
+								<Input value="{/Athmnt}" visible="false" id="Athmnt" ></Input>
+							</VBox>
+						</VBox>
+					</HBox>
+				</Panel>
+				<!--<Panel expandable="true" expanded="false"  headerText="GSC Details" width="auto" class=""><HBox width="100%" justifyContent="Start"><VBox width="30%" class=""><HBox width="100%"><Label text="GSC Coverage Allowed" class=""></Label></HBox><ComboBox
+				items="{/ComboYesNo}" selectedKey="{/GSCCov}"><core:ListItem key="{key}" text="{value}" /></ComboBox></VBox><VBox width="30%" class=""><HBox width="100%"><Label text="GSC Coverage Percentage" class=""></Label></HBox><VBox width="80%" ><Input value="{/GSCCovPr}" id="GSCCovPr" ></Input></VBox></VBox></HBox></Panel> -->
+			
+				<Panel expandable="true" enabled="false" expanded="false"  headerText="Incoming Payment Details" width="auto" class="">
+					<!-- <Label text="Finance Information" class="Split3_Label3" /> -->
+					<!--<Button text="Add Incoming Details Row" press="handleAddRow" type="Emphasized" class="AddRowBtn"></Button>-->
+					<HBox width="100%" justifyContent="Start">
+						<Table id="idIncomingPaymentDetails" inset="false" items="{/InPayDetails}">
+							<columns>
+								<!-- minScreenWidth="Tablet" -->
+								<Column width="4%" demandPopin="true">
+									<Text text="S.No." />
+								</Column>
+								<Column width="0%" demandPopin="true">
+									<Text text="Payment Subsidary Code" visible="false" />
+								</Column>
+								<Column width="14%" demandPopin="true">
+									<Text text="Payment Subsidary" />
+								</Column>
+								<Column width="7%" demandPopin="true">
+									<Text text="Payment Number" />
+								</Column>
+								<Column width="15%" demandPopin="true">
+									<Text text="Payment Date" />
+								</Column>
+								<Column width="7%" demandPopin="true">
+									<Text text="Payment Amount" />
+								</Column>
+								<Column width="7%" demandPopin="true">
+									<Text text="Grant Currency" />
+								</Column>
+								<Column width="7%" demandPopin="true">
+									<Text text="Payment GC" />
+								</Column>
+								<Column width="7%" demandPopin="true">
+									<Text text="Payment USD" />
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Input value="{LineId}" enabled="false" />
+										<Input value="{U_PaySbCd}" visible="false"/>
+										<Input value="{U_PaySbNm}" enabled="false"/>
+										<Input value="{U_PayNo}" enabled="false" />
+										<DatePicker value="{U_PayDate}" enabled="false"/>
+										<Input value="{U_PayAmt}" enabled="false"/>
+										<Input value="{U_GrCur}" enabled="false"/>
+										<Input value="{U_PayGC}" enabled="false"/>
+										<Input value="{U_PayUSD}" enabled="false"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</HBox>
+				</Panel>
+				<Panel expandable="true" expanded="false"  headerText="Allocation Details" width="auto" class="">
+					<!-- <Label text="Finance Information" class="Split3_Label3" /> -->
+					<Button text="Add Freezing Details Row" press="handleAddFreezingRow" type="Accept" class="AddRowBtn"></Button>
+					<Button text="Delete Row" press="handleDeleteFreezingRow" type="Reject" class="sapUiSmallMarginLeft DelRowBtn"></Button>
+					<HBox width="150%" justifyContent="Start">
+						<Table id="idAllocationDetails" inset="false" mode="MultiSelect" multiselect="false" items="{/FreezingDetails}">
+							<columns>
+								<!-- minScreenWidth="Tablet" -->
+								<Column width="5%" demandPopin="true">
+									<Text text="S.No." />
+								</Column>
+								<Column width="0%" demandPopin="true">
+									<Text text="Subsidary" visible="false"/>
+								</Column>
+								<Column width="14%" demandPopin="true">
+									<Text text="Subsidary Name" />
+								</Column>
+								<Column width="0%" demandPopin="true">
+									<Text text="Locations" visible="false"/>
+								</Column>
+								<Column width="15%" demandPopin="true">
+									<Text text="Location Name" />
+								</Column>
+								<Column width="0%" demandPopin="true">
+									<Text text="Program" visible="false"/>
+								</Column>
+								<Column width="15%" demandPopin="true">
+									<Text text="Program Name" />
+								</Column>
+								<Column width="0%" demandPopin="true">
+									<Text text="Parent Program Code" visible="false" />
+								</Column>
+								<Column width="14%" demandPopin="true">
+									<Text text="Parent Program" />
+								</Column>
+								<Column width="0%" demandPopin="true">
+									<Text text="Grant Initiative" visible="false"/>
+								</Column>
+								<Column width="16%" demandPopin="true">
+									<Text text="Grant Initiative Name" />
+								</Column>
+								<Column width="8%" demandPopin="true">
+									<Text text="Currency" />
+								</Column>
+								<Column width="9%" demandPopin="true">
+									<Text text="Amount" />
+								</Column>
+								<Column width="10%" demandPopin="true">
+									<Text text="Amount (USD)" />
+								</Column>
+								<Column width="17%" demandPopin="true">
+									<Text text="Activity" />
+								</Column>
+								<Column width="17%" demandPopin="true">
+									<Text text="Manager" />
+								</Column>
+								<Column width="0%" demandPopin="true">
+									<Text text="CF" visible="false"/>
+								</Column>
+								<Column width="0%" demandPopin="true">
+									<Text text="Base Line" visible="false"/>
+								</Column>
+								<Column width="0%" demandPopin="true">
+									<Text text="Validation" visible="false"/>
+								</Column>
+								<Column width="10%" demandPopin="true">
+									<Text text="Expense Amount(LC)" />
+								</Column>
+								<Column width="11%" demandPopin="true">
+									<Text text="Expense Amount(USD)" />
+								</Column>
+								<Column width="11%" demandPopin="true">
+									<Text text="Expense Amount(GC)" />
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Input value="{LineId}" enabled="false" />
+										<Input value="{U_SubCod}" visible="false"/>
+										<Input value="{U_SubNm}" showValueHelp="true" valueHelpRequest="handleDim2" valueHelpOnly="true"/>
+										<Input value="{U_LocCod}" visible="false"/>
+										<Input value="{U_LocNm}" showValueHelp="true" valueHelpRequest="handleDim3" valueHelpOnly="true" />
+										<Input value="{U_PgmCod}" visible="false"/>
+										<Input value="{U_PgmNm}" showValueHelp="true" valueHelpRequest="handleDim4" valueHelpOnly="true"/>
+                                        <Input value="{U_PrPgCd}" visible="false"/>
+										<Input value="{U_PrPgm}" enabled="false"/>
+										<Input value="{U_GrInit}" visible="false"/>
+										<Input value="{U_GrIntNm}" showValueHelp="true" valueHelpRequest="handleDim5" valueHelpOnly="true"/>
+										<Input value="{U_GrCur}" enabled="false"/>
+										<Input value="{U_Amnt}" liveChange="handleAmountGCLiveChange"/>
+										<Input value="{U_AmntUSD}" enabled="false"/>
+										<Input value="{U_Actvty}" />
+										<Input value="{U_Manager}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleUserRowList"/>
+										<Input value="{U_CF}" visible="false" />
+										<Input value="{U_BsLine}" visible="false" />
+										<Input value="{U_Validated}" visible="false"/>
+										<Input value="{U_ExAmLC}" enabled="false"/>
+										<Input value="{U_ExAmUSD}" enabled="false"/>
+										<Input value="{U_ExAmGC}" enabled="false"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</HBox>
+				</Panel>
+				
+				
+				<!--<Button text="Save" press="handleSaveGrantContract" type="Emphasized" class="sapUiSmallMarginTop SaveGrantBtn"></Button>-->
+			</VBox>
+		</HBox>
+	
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<!--<Button text="Re-Allocation" press="handlePostReAllocation" type="Emphasized" class="sapUiSmallMargin" />-->
+				<Button text="Go to Main Menu" press="handlegoBack"  width="12%"  />
+				<Button text="Save" press="handleSaveFreezing" type="Accept" class="sapUiSmallMargin SaveGrantBtn" />
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>

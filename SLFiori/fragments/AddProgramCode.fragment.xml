@@ -1,0 +1,98 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:exa="org.edu.ui.controls"
+	xmlns:core="sap.ui.core"
+	xmlns:c="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:ui="sap.ui"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog showHeader="true" class="sapUiSizeCompact"
+		contentHeight="auto" contentWidth="40%">
+		<content>
+			<VBox width="100%" height="100%" class="sapUiSmallMarginBottom" justifyContent="Center">
+				<HBox width="100%" justifyContent="Center">
+					<VBox width="80%" justifyContent="Center" class="login sapUiSmallMargin">
+						<HBox width="100%" justifyContent="Start">
+							<VBox width="100%">
+								<HBox width="100%">
+									<Label text="Program Code" class=""></Label>
+								</HBox>
+								<VBox width="70%" class="txtCardCode">
+									<Input value="{/PrcCode}" id="PrcCode" editable="{= ${/PrcCode} === '' ? true : false }" tooltip="Parent Program Code should not cross 5 characters" maxLength="5" ></Input>
+								</VBox>
+							</VBox>
+						</HBox>
+						<HBox width="100%" justifyContent="Start">
+							<VBox width="100%">
+								<HBox width="100%">
+									<Label text="Program Name" class=""></Label>
+								</HBox>
+								<VBox width="100%" class="txtCardCode">
+									<Input value="{/PrcName}" id="PrcName" ></Input>
+								</VBox>
+							</VBox>
+						</HBox>
+					
+					</VBox>
+				</HBox>
+			</VBox> 
+			<!--	<Table id="ProgramCodeListTable" mode="SingleSelectMaster" inset="false" items="{/ProgramCodeList}"><columns><Column minScreenWidth="Tablet" demandPopin="true"><Text text="Program Code" /></Column><Column minScreenWidth="Tablet" demandPopin="true"><Text text="Program Name" /></Column><Column minScreenWidth="Tablet" demandPopin="true"><Text text="Parent Program Code " /></Column><Column minScreenWidth="Tablet" demandPopin="true"><Text text="Program Manager" /></Column><Column minScreenWidth="Tablet" demandPopin="true"><Text text="Extended Text" /></Column></columns><items><ColumnListItem><cells><Text text="{CCCode}" /><Text text="{CCName}" /><Text text="{U_ParPgm}" /><Text text="{U_Mangr}" /><Text text="{U_ExtText}" /></cells></ColumnListItem></items></Table> -->
+			
+			<!--			<f:formContainers>
+				<f:FormContainer ariaLabelledBy="Title2">
+					<f:toolbar>
+						<Toolbar>
+							<Title id="Title2" text="Office" level="H5" titleStyle="H5"/>
+							<ToolbarSpacer />
+							<Button icon="sap-icon://settings"/>
+						</Toolbar>
+					</f:toolbar>
+					<f:formElements>
+						<f:FormElement label="Name">
+							<f:fields>
+								<Input value="{SupplierName}" id="name"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Street">
+							<f:fields>
+								<Input value="{Street}" />
+								<Input value="{HouseNumber}">
+									<layoutData>
+										<l:GridData span="XL2 L1 M3 S4" />
+									</layoutData>
+								</Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="ZIP Code/City">
+							<f:fields>
+								<Input value="{ZIPCode}">
+									<layoutData>
+										<l:GridData span="XL2 L1 M3 S4" />
+									</layoutData>
+								</Input>
+								<Input value="{City}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Country">
+							<f:fields>
+								<Select width="100%" id="country" selectedKey="{Country}">
+									<items>
+										<core:Item text="Germany" key="Germany"/>
+										<core:Item text="USA" key="USA"/>
+										<core:Item text="England" key="England"/>
+									</items>
+								</Select>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers> -->
+			
+		</content>
+		<buttons>
+			<Button text="Save" press="handleAddParentProgram" />
+			<Button text="Close" press="handleAddProgramCodeClose" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

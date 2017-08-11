@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:exa="org.edu.ui.controls" xmlns:core="sap.ui.core" xmlns:c="sap.ui.core"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ui="sap.ui"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog showHeader="true" title="Program Master" class="sapUiSizeCompact"
+		contentHeight="auto" contentWidth="90%">
+		
+		<subHeader class="sapUiSmallMarginBegin">
+			<Toolbar>
+				<SearchField
+					liveChange="onPgmCodeSearchSave"
+					width="50%"/>
+			</Toolbar>
+		</subHeader>
+		
+		<content>
+			<Table id="ProgramCodeListTableSave" mode="SingleSelectMaster" inset="false" itemPress="handleProgramCodeOk_Save" items="{/ProgramCodeList}">
+				<columns>
+					<Column minScreenWidth="Tablet" width="13%" demandPopin="true">
+						<Text text="Program Code" />
+					</Column>
+					<Column minScreenWidth="Tablet" width="30%" demandPopin="true">
+						<Text text="Program Name" />
+					</Column>
+					<Column minScreenWidth="Tablet" width="13%" demandPopin="true">
+						<Text text="Parent Program Code " />
+					</Column>
+					<Column minScreenWidth="Tablet" width="13%" demandPopin="true">
+						<Text text="Program Manager" />
+					</Column>
+					<Column minScreenWidth="Tablet" width="30%" demandPopin="true">
+						<Text text="Extended Text" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Active">
+						<cells>
+							<Text text="{Code}" />
+							<Text text="{Name}" />
+							<Text text="{U_IKPRPRG}" />
+							<Text text="{U_IKMAN}" />
+							<Text text="{U_IKEXTTXT}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+    <buttons>
+        <!--<Button text="View /Edit" press="handleProgramCodeOk" />-->
+        <Button text="Close" press="handleProgramCodeClose_Save" />
+        <!--<Button text="Add New Program" press="handleAddProgramCode" />-->
+    </buttons>
+	</Dialog>
+
+</core:FragmentDefinition>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="GrantContract_BP" defaultClient="crossClient" defaultLanguage="$$language$$" hidden="false" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE">
+  <descriptions defaultDescription=""/>
+  <metadata changedAt="2014-05-30 16:16:46.344"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+        <viewAttribute id="COL" datatype="NVARCHAR" length="50"/>
+      
+        <viewAttribute id="CardCode" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="CardName" datatype="NVARCHAR" length="100"/>
+        <viewAttribute id="CntctPrsn" datatype="NVARCHAR" length="20"/>
+        <viewAttribute id="Cellular" datatype="NVARCHAR" length="20"/>
+        <viewAttribute id="E_Mail" datatype="NVARCHAR" length="30"/>
+      
+        <viewAttribute id="U_SFDCID" datatype="NVARCHAR" length="50"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+ 	 var_out = 
+			SELECT 1 As COL,&quot;CardCode&quot;,&quot;CardName&quot;,&quot;CntctPrsn&quot;,&quot;Cellular&quot;,&quot;E_Mail&quot;,&quot;U_SFDCID&quot; 
+			FROM &quot;CMD&quot;.&quot;OCRD&quot;
+			WHERE &quot;validFor&quot;='Y' And &quot;frozenFor&quot;='N' And &quot;CardType&quot;='C' 
+			Order By &quot;CardName&quot; 
+			;
+ END 
+ /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+    
+      <attribute id="CardCode" order="2">
+    
+        <keyMapping columnObjectName="Script_View" columnName="CardCode"/>
+    
+      </attribute>
+      <attribute id="CardName" order="3">
+        <keyMapping columnObjectName="Script_View" columnName="CardName"/>
+      </attribute>
+      <attribute id="CntctPrsn" order="4">
+        <keyMapping columnObjectName="Script_View" columnName="CntctPrsn"/>
+      </attribute>
+      <attribute id="Cellular" order="5">
+        <keyMapping columnObjectName="Script_View" columnName="Cellular"/>
+      </attribute>
+      <attribute id="E_Mail" order="6">
+        <keyMapping columnObjectName="Script_View" columnName="E_Mail"/>
+      </attribute>
+    
+      <attribute id="U_SFDCID" order="7">
+        <keyMapping columnObjectName="Script_View" columnName="U_SFDCID"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="COL" order="1" aggregationType="count" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="COL"/>
+      </measure></baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

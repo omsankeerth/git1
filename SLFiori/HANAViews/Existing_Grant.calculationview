@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="Existing_Grant" defaultClient="crossClient" defaultLanguage="$$language$$" hidden="false" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE">
+  <descriptions defaultDescription=""/>
+  <metadata changedAt="2014-05-30 16:16:46.344"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+        <viewAttribute id="DocEntry" datatype="NVARCHAR" length="50"/>
+        <viewAttribute datatype="NVARCHAR" id="DocNum" length="50"/>
+        <viewAttribute id="U_GCode" datatype="NVARCHAR" length="50"/>
+      
+        <viewAttribute id="U_GName" datatype="NVARCHAR" length="50"/>
+      
+        <viewAttribute id="U_DnrCod" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_DnrNam" datatype="NVARCHAR" length="100"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+ 	 var_out = 
+			SELECT A0.&quot;DocEntry&quot;,A0.&quot;DocNum&quot;,A0.&quot;U_GCode&quot;,A0.&quot;U_GName&quot; ,A0.&quot;U_DnrCod&quot;
+		    ,A0.&quot;U_DnrNam&quot;
+			FROM &quot;CMD&quot;.&quot;@IK_GNCT&quot; A0 
+			Order By Cast(A0.&quot;DocEntry&quot; as int)
+			;
+ END 
+ /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+      <attribute id="U_GCode" order="3" semanticType="empty">
+        <descriptions defaultDescription="Grant Code"/>
+        <keyMapping columnObjectName="Script_View" columnName="U_GCode"/>
+      </attribute>
+      <attribute id="U_GName" order="4">
+        <descriptions defaultDescription="Grant Name"/>
+        <keyMapping columnObjectName="Script_View" columnName="U_GName"/>
+      </attribute>
+    
+      <attribute id="U_DnrCod" order="5">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_DnrCod"/>
+    
+      </attribute>
+      <attribute id="U_DnrNam" order="6">
+        <keyMapping columnObjectName="Script_View" columnName="U_DnrNam"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="DocEntry" order="1" aggregationType="count" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="DocEntry"/>
+      </measure>
+      <measure id="DocNum" aggregationType="count" measureType="simple" order="2">
+        <descriptions defaultDescription="DocNum"/>
+        <measureMapping columnObjectName="Script_View" columnName="DocNum"/>
+      </measure></baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

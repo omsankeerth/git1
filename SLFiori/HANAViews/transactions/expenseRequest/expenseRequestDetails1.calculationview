@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="expenseRequestDetails1" defaultClient="crossClient" defaultLanguage="$$language$$" hidden="false" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE">
+  <descriptions defaultDescription=""/>
+  <metadata changedAt="2014-05-30 16:16:46.344"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+        <viewAttribute id="DocEntry" datatype="NVARCHAR" length="50"/>
+      
+        <viewAttribute id="LineId" datatype="INTEGER"/>
+      
+        <viewAttribute id="U_ExpTyp" datatype="NVARCHAR" length="50"/>
+      
+        <viewAttribute id="U_DescExp" datatype="NVARCHAR" length="240"/>
+        <viewAttribute id="U_CurrCode" datatype="NVARCHAR" length="10"/>
+      
+        <viewAttribute id="U_CurrName" datatype="NVARCHAR" length="30"/>
+        <viewAttribute id="U_ExpAmt" datatype="DOUBLE"/>
+        <viewAttribute id="U_GrCode" datatype="NVARCHAR" length="10"/>
+        <viewAttribute id="U_GrName" datatype="NVARCHAR" length="100"/>
+        <viewAttribute id="U_LocCode" datatype="NVARCHAR" length="10"/>
+        <viewAttribute id="U_LocName" datatype="NVARCHAR" length="100"/>
+        <viewAttribute id="U_PgmCode" datatype="NVARCHAR" length="10"/>
+      
+        <viewAttribute id="U_PgmName" datatype="NVARCHAR" length="100"/>
+        <viewAttribute id="U_GICode" datatype="NVARCHAR" length="10"/>
+      
+        <viewAttribute id="U_GIName" datatype="NVARCHAR" length="100"/>
+      
+        <viewAttribute id="U_IsGRPO" datatype="NVARCHAR" length="10"/>
+      
+        <viewAttribute id="U_SbMgr" datatype="NVARCHAR" length="20"/>
+        <viewAttribute id="U_SbMail" datatype="NVARCHAR" length="100"/>
+        <viewAttribute id="U_PgmMgr" datatype="NVARCHAR" length="20"/>
+        <viewAttribute id="U_PgmMail" datatype="NVARCHAR" length="100"/>
+        <viewAttribute id="U_UpMail" datatype="NVARCHAR" length="10"/>
+        <viewAttribute id="U_Accpt" datatype="NVARCHAR" length="10"/>
+        <viewAttribute id="U_Rjct" datatype="NVARCHAR" length="10"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+ 	 var_out = 
+			SELECT A0.&quot;DocEntry&quot;
+ 			,A1.&quot;LineId&quot;,A1.&quot;U_ExpTyp&quot;,A1.&quot;U_DescExp&quot;,A1.&quot;U_CurrCode&quot;,A1.&quot;U_CurrName&quot;
+ 			,A1.&quot;U_ExpAmt&quot;,A1.&quot;U_GrCode&quot;,A1.&quot;U_GrName&quot;,A1.&quot;U_LocCode&quot;,A1.&quot;U_LocName&quot;
+ 			,A1.&quot;U_PgmCode&quot;,A1.&quot;U_PgmName&quot;,A1.&quot;U_GICode&quot;
+ 			,A1.&quot;U_GIName&quot;,A1.&quot;U_IsGRPO&quot;
+ 			,A0.&quot;U_SbMgr&quot;,A0.&quot;U_SbMail&quot;,A1.&quot;U_PgmMgr&quot;
+ 			,A1.&quot;U_PgmMail&quot;,A1.&quot;U_UpMail&quot; As &quot;U_UpMail&quot;,A1.&quot;U_Accpt&quot; As &quot;U_Accpt&quot;,A1.&quot;U_Rjct&quot; As &quot;U_Rjct&quot;
+			FROM &quot;CMD&quot;.&quot;@IK_EXPREQ&quot; A0 Inner Join &quot;CMD&quot;.&quot;@IK_EXREQ1&quot; A1 ON A0.&quot;DocEntry&quot;=A1.&quot;DocEntry&quot;
+			Order By A1.&quot;LineId&quot; 
+			;
+ END 
+ /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+    
+      <attribute id="U_ExpTyp" order="3">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_ExpTyp"/>
+    
+      </attribute>
+    
+      <attribute id="U_DescExp" order="4">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_DescExp"/>
+    
+      </attribute>
+      <attribute id="U_CurrCode" order="5">
+        <keyMapping columnObjectName="Script_View" columnName="U_CurrCode"/>
+      </attribute>
+    
+      <attribute id="U_CurrName" order="6">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_CurrName"/>
+    
+      </attribute>
+      <attribute id="U_GrCode" order="8">
+        <keyMapping columnObjectName="Script_View" columnName="U_GrCode"/>
+      </attribute>
+      <attribute id="U_GrName" order="9">
+        <keyMapping columnObjectName="Script_View" columnName="U_GrName"/>
+      </attribute>
+      <attribute id="U_LocCode" order="10">
+        <keyMapping columnObjectName="Script_View" columnName="U_LocCode"/>
+      </attribute>
+      <attribute id="U_LocName" order="11">
+        <keyMapping columnObjectName="Script_View" columnName="U_LocName"/>
+      </attribute>
+      <attribute id="U_PgmCode" order="12">
+        <keyMapping columnObjectName="Script_View" columnName="U_PgmCode"/>
+      </attribute>
+    
+      <attribute id="U_PgmName" order="13">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_PgmName"/>
+    
+      </attribute>
+      <attribute id="U_GICode" order="14">
+        <keyMapping columnObjectName="Script_View" columnName="U_GICode"/>
+      </attribute>
+    
+      <attribute id="U_GIName" order="15">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_GIName"/>
+    
+      </attribute>
+    
+      <attribute id="U_IsGRPO" order="16">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_IsGRPO"/>
+    
+      </attribute>
+    
+      <attribute id="U_SbMgr" order="17">
+        <keyMapping columnObjectName="Script_View" columnName="U_SbMgr"/>
+      </attribute>
+      <attribute id="U_SbMail" order="18">
+        <keyMapping columnObjectName="Script_View" columnName="U_SbMail"/>
+      </attribute>
+      <attribute id="U_PgmMgr" order="19">
+        <keyMapping columnObjectName="Script_View" columnName="U_PgmMgr"/>
+      </attribute>
+      <attribute id="U_PgmMail" order="20">
+        <keyMapping columnObjectName="Script_View" columnName="U_PgmMail"/>
+      </attribute>
+      <attribute id="U_UpMail" order="21">
+        <keyMapping columnObjectName="Script_View" columnName="U_UpMail"/>
+      </attribute>
+      <attribute id="U_Accpt" order="22">
+        <keyMapping columnObjectName="Script_View" columnName="U_Accpt"/>
+      </attribute>
+      <attribute id="U_Rjct" order="23">
+        <keyMapping columnObjectName="Script_View" columnName="U_Rjct"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="DocEntry" order="1" aggregationType="count" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="DocEntry"/>
+      </measure>
+    
+      <measure id="LineId" order="2" aggregationType="sum" measureType="simple">
+    
+        <measureMapping columnObjectName="Script_View" columnName="LineId"/>
+    
+      </measure>
+      <measure id="U_ExpAmt" order="7" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="U_ExpAmt"/>
+      </measure></baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

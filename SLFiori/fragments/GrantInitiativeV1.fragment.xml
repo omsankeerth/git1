@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ui="sap.ui"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog showHeader="false" class="sapUiSizeCompact"
+		contentHeight="auto" contentWidth="90%">
+		<content>
+			<Table id="GrantInitiativeTable" mode="SingleSelectMaster" inset="false" items="{/GrantInitiativeList}">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Grant Initiative Code" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Grant Initiative Name" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Extended Text" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{CCCode}" />
+							<Text text="{CCName}" />
+							<Text text="{U_ExtText}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+    <buttons>
+        <Button text="Ok" press="handleGrantInitiativeOk" />
+        <Button text="Close" press="handleGrantInitiativeClose" />
+    </buttons>
+	</Dialog>
+
+</core:FragmentDefinition>

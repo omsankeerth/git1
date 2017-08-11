@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:exa="org.edu.ui.controls" xmlns:core="sap.ui.core" xmlns:c="sap.ui.core"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ui="sap.ui"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog showHeader="false" class="sapUiSizeCompact"
+		contentHeight="auto" contentWidth="90%">
+		
+		<subHeader class="sapUiSmallMarginBegin">
+			<Toolbar>
+				<SearchField
+					liveChange="onDim4Search"
+					width="50%"/>
+			</Toolbar>
+		</subHeader>
+		
+		<content>
+			<Table id="Dim4ListTable" mode="SingleSelectMaster" inset="false" items="{/Dim4List}">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="CCCode" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="CCName" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Parent Program" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{CCCode}" />
+							<Text text="{CCName}" />
+							<Text text="{ProgramName}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+    <buttons>
+        <Button text="Ok" press="handleDim4Ok" />
+        <Button text="Close" press="handleDim4Close" />
+    </buttons>
+	</Dialog>
+
+</core:FragmentDefinition>

@@ -1,0 +1,95 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:ui="sap.ui.table" xmlns:tnt="sap.tnt"
+		controllerName="SLFiori.view.Dashboard" xmlns:c="sap.ui.commons" xmlns:html="http://www.w3.org/1999/xhtml" class="Dashboard_Screen">
+
+    <!--<HBox width="100%" height="3%" class="UserDetails">
+        <Label text="Logon" class="" />
+    </HBox>-->
+    
+   <Toolbar class="" id="toolbar1" width="100%" enableScrolling="false">
+        <ToolbarSpacer />
+		 <Title text="Ashoka-Grant Management"/>
+		<ToolbarSpacer />
+		<core:Icon
+			src="sap-icon://log"
+			class="sapUiSmallMargin logoff_icon"
+			color="#031E48" 
+			press="handlelogoffButton">
+			<core:layoutData>
+				<FlexItemData growFactor="1" />
+			</core:layoutData>
+		</core:Icon>
+		</Toolbar> 
+	
+    <Page title="Ashoka-Grant Management" class="PageTitle" showHeader="false" enableScrolling="false">
+	 <!--<Input value="{/UserName}"  id="UserName"></Input>-->
+	 
+	<HBox width="100%" height="100%" class="sapUiSmallMarginBegin Dashboard_Layout">
+	
+		
+		<VBox width="25%" expandable="true" height="85%" class="Dashboard_Menu">
+	
+		 <Panel id="Msts" expandable="true" expanded="false" headerText="Masters"  width="auto" class="sapUiSizeCompact">
+					<List id="Masters" class="Masters_Menu" 
+				    items="{/ListData}"
+				    mode="SingleSelectMaster"
+				    selectionChange="onMastersSelectionChange">
+			        <items>
+				    <StandardListItem title="{listName}" class="" 
+					type="Active"
+					press="onMastersSelectionChange"/>
+			        </items>
+		            </List>
+			   	</Panel> 
+			   	
+			   	<Panel id="Txns" expandable="true" expanded="false" headerText="Transactions"  width="auto" class="sapUiSizeCompact SideMenu">
+					<List id="Transactions" 
+				    items="{/TransactionsData}"
+				    mode="SingleSelectMaster"
+				    selectionChange="onTransactionsSelectionChange">
+			        <items>
+				    <StandardListItem title="{listName}" class="" 
+					type="Active"
+					press="onTransactionsSelectionChange"/>
+			        </items>
+		            </List>
+			   	</Panel> 
+			   	
+			   	<Panel id="Rpts" expandable="true" expanded="false" headerText="Reports"  width="auto" class="sapUiSizeCompact SideMenu">
+					<List id="Reports" 
+				    items="{/ReportsData}"
+				    mode="SingleSelectMaster"
+				    selectionChange="onReportsSelectionChange">
+			        <items>
+				    <StandardListItem title="{listName}" class="ReportsMenu" 
+					type="Active"
+					press="onReportsSelectionChange"/>
+			        </items>
+		            </List>
+			   	</Panel> 
+			   	
+			   	<Panel id="Emp" expandable="true" expanded="false" headerText="Employee"  width="auto" class="sapUiSizeCompact SideMenu">
+					<List id="Employee" 
+				    items="{/EmpData}"
+				    mode="SingleSelectMaster"
+				    selectionChange="onEmpSelectionChange">
+			        <items>
+				    <StandardListItem title="{listName}" class="EmpMenu" 
+					type="Active"
+					press="onEmpSelectionChange"/>
+			        </items>
+		            </List>
+			   	</Panel> 
+				
+		</VBox>
+		
+		<VBox width="69%" height="67%" class="sapUiSmallMarginBegin Dashboard_Place">
+			<Image class="sapUiSmallMarginTop AshokaImage" src="images/Ashoka.png" >
+			        <layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData> 
+				</Image>
+		</VBox>
+		
+	</HBox>
+	</Page>
+</core:View>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="donorlist_cntpersons" defaultClient="crossClient" defaultLanguage="$$language$$" hidden="false" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE">
+  <descriptions defaultDescription=""/>
+  <metadata changedAt="2014-05-30 16:16:46.344"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+      
+        <viewAttribute id="COL" datatype="INTEGER"/>
+        <viewAttribute id="LineId" datatype="INTEGER"/>
+      
+        <viewAttribute id="Code" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_IKCNTPER" datatype="NVARCHAR" length="100"/>
+        <viewAttribute id="U_IKFRNM" datatype="NVARCHAR" length="100"/>
+        <viewAttribute id="U_IKMDNM" datatype="NVARCHAR" length="100"/>
+        <viewAttribute id="U_IKLSNM" datatype="NVARCHAR" length="100"/>
+        <viewAttribute id="U_IKTELNO" datatype="ALPHANUM" length="20"/>
+        <viewAttribute id="U_IKEMAIL" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_IKRMKS" datatype="NVARCHAR" length="240"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+--  	 var_out = 
+-- 			SELECT 1 as COL,A0.&quot;CardCode&quot;,A0.&quot;Name&quot;,A0.&quot;FirstName&quot; ,A0.&quot;MiddleName&quot;
+-- 			,A0.&quot;LastName&quot;,A0.&quot;Cellolar&quot; As &quot;MobilePhone&quot;,A0.&quot;E_MailL&quot; As &quot;E_Mail&quot;
+-- 			,A0.&quot;Notes1&quot; As &quot;Remarks1&quot;
+-- 			FROM &quot;CMD&quot;.&quot;OCPR&quot; A0
+-- 			;
+
+var_out = 
+			SELECT 1 as COL,A1.&quot;LineId&quot;,A0.&quot;Code&quot;,A1.&quot;U_IKCNTPER&quot;,A1.&quot;U_IKFRNM&quot; ,A1.&quot;U_IKMDNM&quot;
+			,A1.&quot;U_IKLSNM&quot;,A1.&quot;U_IKTELNO&quot;,A1.&quot;U_IKEMAIL&quot;,A1.&quot;U_IKRMKS&quot;
+			FROM &quot;CMD&quot;.&quot;@IK_DNR_MST&quot; A0 
+			Inner Join &quot;CMD&quot;.&quot;@IK_DNR_MST_D0&quot; A1 on A0.&quot;Code&quot;=A1.&quot;Code&quot;
+			;
+ END 
+ /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+      <attribute id="Code" order="3">
+        <keyMapping columnObjectName="Script_View" columnName="Code"/>
+      </attribute>
+      <attribute id="U_IKCNTPER" order="4">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKCNTPER"/>
+      </attribute>
+    
+      <attribute id="U_IKFRNM" order="5">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_IKFRNM"/>
+    
+      </attribute>
+      <attribute id="U_IKMDNM" order="6">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKMDNM"/>
+      </attribute>
+      <attribute id="U_IKLSNM" order="7">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKLSNM"/>
+      </attribute>
+      <attribute id="U_IKTELNO" order="8">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKTELNO"/>
+      </attribute>
+      <attribute id="U_IKEMAIL" order="9">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKEMAIL"/>
+      </attribute>
+      <attribute id="U_IKRMKS" order="10">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKRMKS"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="COL" order="1" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="COL"/>
+      </measure>
+    
+      <measure id="LineId" order="2" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="LineId"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

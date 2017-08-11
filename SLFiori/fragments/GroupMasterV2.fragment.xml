@@ -1,0 +1,52 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:exa="org.edu.ui.controls" xmlns:core="sap.ui.core" xmlns:c="sap.ui.core"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ui="sap.ui"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog showHeader="false" class="sapUiSizeCompact"
+		contentHeight="auto" contentWidth="90%">
+		
+		<subHeader class="sapUiSmallMarginBottom">
+			<Toolbar>
+				<SearchField
+					liveChange="onGroupSearch"
+					width="100%"/>
+			</Toolbar>
+		</subHeader>
+		
+		<content> 
+			<Table id="GroupListTable" mode="SingleSelectMaster" inset="false" items="{/GroupMaster}">
+				<columns>
+				    <Column minScreenWidth="Tablet" demandPopin="true" visible="hidden">
+						<Text text="COL" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Group Code " />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Group Name" />
+					</Column>
+					<!--<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="ContactPerson" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="ContactNo." />
+					</Column>-->
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+					    	<Text text="{COL}" />
+							<Text text="{Code}" />
+							<Text text="{Name}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+    <buttons>
+        <Button text="Ok" press="handleGroupOk" />
+        <Button text="Close" press="handleGroupClose" />
+    </buttons>
+	</Dialog>
+
+</core:FragmentDefinition>

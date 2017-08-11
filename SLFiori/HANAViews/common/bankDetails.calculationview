@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="bankDetails" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE" dimensionType="STANDARD" schemaVersion="2.3" defaultClient="$$client$$" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" scriptParametersCaseSensitive="true" enforceSqlExecution="false">
+<descriptions defaultDescription="CostCenter"/>
+<localVariables/>
+<variableMappings/>
+<dataSources/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+    <viewAttributes>
+      <viewAttribute id="COL" datatype="INTEGER"/>
+      <viewAttribute id="Subsidary" datatype="NVARCHAR" length="10"/>
+      <viewAttribute id="CountryCod" datatype="NVARCHAR" length="25"/>
+    
+      <viewAttribute id="BankCode" datatype="NVARCHAR" length="25"/>
+      <viewAttribute id="BankName" datatype="NVARCHAR" length="100"/>
+      <viewAttribute id="Account" datatype="NVARCHAR" length="50"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <definition>/********* Begin Procedure Script ************/ 
+BEGIN 
+   var_out = 
+    Select 1 As COL,'S1' As &quot;Subsidary&quot;,A0.&quot;CountryCod&quot;,A0.&quot;BankCode&quot;,A0.&quot;BankName&quot;,A1.&quot;Account&quot; from &quot;USA&quot;.&quot;ODSC&quot; A0 
+    Inner Join &quot;USA&quot;.&quot;DSC1&quot; A1 On A0.&quot;BankCode&quot;=A1.&quot;BankCode&quot;
+    Union All
+    Select 1 As COL,'S21' As &quot;Subsidary&quot;,A0.&quot;CountryCod&quot;,A0.&quot;BankCode&quot;,A0.&quot;BankName&quot;,A1.&quot;Account&quot; from &quot;UK&quot;.&quot;ODSC&quot; A0 
+    Inner Join &quot;UK&quot;.&quot;DSC1&quot; A1 On A0.&quot;BankCode&quot;=A1.&quot;BankCode&quot;
+   ;
+
+END /********* End Procedure Script ************/</definition>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Script_View">
+  <attributes>
+    <attribute id="Subsidary" order="2">
+      <keyMapping columnObjectName="Script_View" columnName="Subsidary"/>
+    </attribute>
+    <attribute id="CountryCod" order="3">
+      <keyMapping columnObjectName="Script_View" columnName="CountryCod"/>
+    </attribute>
+    <attribute id="BankCode" order="4">
+      <keyMapping columnObjectName="Script_View" columnName="BankCode"/>
+    </attribute>
+    <attribute id="BankName" order="5">
+      <keyMapping columnObjectName="Script_View" columnName="BankName"/>
+    </attribute>
+    <attribute id="Account" order="6">
+      <keyMapping columnObjectName="Script_View" columnName="Account"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="COL" order="1" aggregationType="count" measureType="simple">
+      <descriptions defaultDescription="COL"/>
+      <measureMapping columnObjectName="Script_View" columnName="COL"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="cashRequestList" defaultClient="crossClient" defaultLanguage="$$language$$" hidden="false" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE">
+  <descriptions defaultDescription=""/>
+  <metadata changedAt="2014-05-30 16:16:46.344"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+        <viewAttribute id="Code" datatype="INTEGER"/>
+        <viewAttribute id="DocEntry" datatype="INTEGER"/>
+        <viewAttribute id="U_ReqTyp" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_ReqName" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_ReqSbNm" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_ReqDate" datatype="NVARCHAR" length="10"/>
+      
+        <viewAttribute id="DocNum" datatype="INTEGER"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+
+var_out = 
+			SELECT 1 as &quot;Code&quot;,A0.&quot;DocEntry&quot;,A0.&quot;U_ReqTyp&quot;,A0.&quot;U_ReqName&quot;,A0.&quot;U_ReqSbNm&quot;
+			,Cast(A0.&quot;U_ReqDate&quot; As NVarchar(10)) As &quot;U_ReqDate&quot;
+			,A0.&quot;DocNum&quot;
+			FROM &quot;CMD&quot;.&quot;@IK_CSREQ&quot; A0  Order By A0.&quot;DocEntry&quot;
+			
+			; 
+ END 
+ /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+      <attribute id="DocEntry" order="2">
+        <keyMapping columnObjectName="Script_View" columnName="DocEntry"/>
+      </attribute>
+      <attribute id="U_ReqTyp" order="3">
+        <keyMapping columnObjectName="Script_View" columnName="U_ReqTyp"/>
+      </attribute>
+      <attribute id="U_ReqName" order="4">
+        <keyMapping columnObjectName="Script_View" columnName="U_ReqName"/>
+      </attribute>
+      <attribute id="U_ReqSbNm" order="5">
+        <keyMapping columnObjectName="Script_View" columnName="U_ReqSbNm"/>
+      </attribute>
+      <attribute id="U_ReqDate" order="6">
+        <keyMapping columnObjectName="Script_View" columnName="U_ReqDate"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Code" order="1" aggregationType="count" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="Code"/>
+      </measure>
+      <measure id="DocNum" order="7" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="DocNum"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

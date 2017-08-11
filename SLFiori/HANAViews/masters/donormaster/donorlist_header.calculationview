@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="donorlist_header" defaultClient="crossClient" defaultLanguage="$$language$$" hidden="false" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE">
+  <descriptions defaultDescription=""/>
+  <metadata changedAt="2014-05-30 16:16:46.344"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+      
+        <viewAttribute id="COL" datatype="INTEGER"/>
+      
+        <viewAttribute id="Code" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="Name" datatype="NVARCHAR" length="100"/>
+      
+        <viewAttribute id="U_IKPHNO" datatype="ALPHANUM" length="20"/>
+        <viewAttribute id="U_IKCAT" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_IKTAXID" datatype="NVARCHAR" length="20"/>
+      
+        <viewAttribute id="U_IKEMAIL" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_IKORG" datatype="NVARCHAR" length="70"/>
+      
+        <viewAttribute id="U_IKSFDC" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_IKTAXNO" datatype="NVARCHAR" length="30"/>
+        <viewAttribute id="U_IKVAT" datatype="NVARCHAR" length="30"/>
+        <viewAttribute id="U_IKUKST" datatype="NVARCHAR" length="15"/>
+        <viewAttribute id="U_IKUKEND" datatype="NVARCHAR" length="15"/>
+        <viewAttribute id="GroupName" datatype="NVARCHAR" length="50"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+--  	 var_out = 
+-- 			SELECT 1 as COL,A0.&quot;CardCode&quot;,A0.&quot;CardName&quot;,A0.&quot;CntctPrsn&quot; ,A0.&quot;Cellular&quot;
+-- 			,A0.&quot;GroupCode&quot;,A0.&quot;LicTradNum&quot;,A0.&quot;Currency&quot;
+-- 			,A0.&quot;E_Mail&quot;,A0.&quot;CardFName&quot;
+-- 			FROM &quot;CMD&quot;.&quot;OCRD&quot; A0 Order By A0.&quot;CardName&quot;
+-- 			;
+
+var_out = 
+			SELECT 1 as COL,A0.&quot;Code&quot;,A0.&quot;Name&quot; ,A0.&quot;U_IKPHNO&quot;
+			,A0.&quot;U_IKCAT&quot;,A0.&quot;U_IKTAXID&quot;
+			,A0.&quot;U_IKEMAIL&quot;,A0.&quot;U_IKORG&quot;
+			,A0.&quot;U_IKSFDC&quot;,A0.&quot;U_IKTAXNO&quot;,A0.&quot;U_IKVAT&quot;
+			,CAST(A0.&quot;U_IKUKST&quot; AS Nvarchar(10)) As &quot;U_IKUKST&quot;
+			,CAST(A0.&quot;U_IKUKEND&quot; AS Nvarchar(10)) As &quot;U_IKUKEND&quot;
+			,(SELECT &quot;GroupName&quot; From &quot;CMD&quot;.&quot;OCRG&quot; Where &quot;GroupCode&quot;=A0.&quot;U_IKCAT&quot;) As &quot;GroupName&quot;
+			FROM &quot;CMD&quot;.&quot;@IK_DNR_MST&quot; A0 Order By A0.&quot;Name&quot;
+			;
+ END 
+ /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+      <attribute id="Code" order="2">
+        <keyMapping columnObjectName="Script_View" columnName="Code"/>
+      </attribute>
+      <attribute id="Name" order="3">
+        <keyMapping columnObjectName="Script_View" columnName="Name"/>
+      </attribute>
+    
+      <attribute id="U_IKPHNO" order="4">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_IKPHNO"/>
+    
+      </attribute>
+      <attribute id="U_IKCAT" order="5">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKCAT"/>
+      </attribute>
+      <attribute id="U_IKTAXID" order="6">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKTAXID"/>
+      </attribute>
+    
+      <attribute id="U_IKEMAIL" order="7">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_IKEMAIL"/>
+    
+      </attribute>
+      <attribute id="U_IKORG" order="8">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKORG"/>
+      </attribute>
+    
+      <attribute id="U_IKSFDC" order="9">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKSFDC"/>
+      </attribute>
+      <attribute id="U_IKTAXNO" order="10">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKTAXNO"/>
+      </attribute>
+      <attribute id="U_IKVAT" order="11">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKVAT"/>
+      </attribute>
+      <attribute id="U_IKUKST" order="12">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKUKST"/>
+      </attribute>
+      <attribute id="U_IKUKEND" order="13">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKUKEND"/>
+      </attribute>
+      <attribute id="GroupName" order="14">
+        <keyMapping columnObjectName="Script_View" columnName="GroupName"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="COL" order="1" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="COL"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

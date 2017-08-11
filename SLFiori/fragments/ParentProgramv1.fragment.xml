@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ui="sap.ui"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog showHeader="false" class="sapUiSizeCompact"
+		contentHeight="auto" contentWidth="50%">
+		<content>
+			<Table id="ParentProgramTable" mode="SingleSelectMaster" inset="false" items="{/ParentProgramList}">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Program Master Code" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Program Master Name " />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{Code}" />
+							<Text text="{Name}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+    <buttons>
+        <Button text="Ok" press="handleParentProgramOk" />
+        <Button text="Close" press="handleParentProgramClose" />
+        <Button text="Add New Parent Program" press="handleAddParentPgm" />
+    </buttons>
+	</Dialog>
+
+</core:FragmentDefinition>

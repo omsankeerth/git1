@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:exa="org.edu.ui.controls" xmlns:core="sap.ui.core" xmlns:c="sap.ui.core"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ui="sap.ui"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog showHeader="false" class="sapUiSizeCompact"
+		contentHeight="auto" contentWidth="90%">
+		
+		<subHeader class="sapUiSmallMarginBegin">
+			<Toolbar>
+				<SearchField
+					liveChange="onDim3Search"
+					width="50%"/>
+			</Toolbar>
+		</subHeader>
+		
+		<content>
+			<Table id="LocationListTable" mode="SingleSelectMaster" inset="false" items="{/LocationList}">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="CCCode" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="CCName" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{LocCode}" />
+							<Text text="{LocName}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+    <buttons>
+        <Button text="Ok" press="handleLocationOk" />
+        <Button text="Close" press="handleLocationClose" />
+    </buttons>
+	</Dialog>
+
+</core:FragmentDefinition>

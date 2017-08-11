@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="list_display" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE" dimensionType="STANDARD" schemaVersion="2.3" defaultClient="$$client$$" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" scriptParametersCaseSensitive="true" enforceSqlExecution="false">
+<descriptions defaultDescription="CostCenter"/>
+<localVariables/>
+<variableMappings/>
+<dataSources/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+    <viewAttributes>
+      <viewAttribute id="COL" datatype="INTEGER"/>
+    
+      <viewAttribute id="Code" datatype="NVARCHAR" length="25"/>
+      <viewAttribute id="Name" datatype="NVARCHAR" length="50"/>
+      <viewAttribute id="U_IKDIMEN" datatype="NVARCHAR" length="10"/>
+    
+      <viewAttribute id="U_IKGRCUR" datatype="NVARCHAR" length="20"/>
+      <viewAttribute id="U_IKMAN" datatype="NVARCHAR" length="100"/>
+      <viewAttribute id="U_IKEXTTXT" datatype="NVARCHAR" length="247"/>
+      <viewAttribute id="U_IKPRPRG" datatype="NVARCHAR" length="50"/>
+    
+      <viewAttribute id="U_IKGRRS" datatype="NVARCHAR" length="50"/>
+    
+      <viewAttribute id="U_IKSUBCD" datatype="NVARCHAR" length="20"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <definition>/********* Begin Procedure Script ************/ 
+BEGIN 
+--   var_out = 
+--   SELECT 1 As COL, A0.&quot;PrcCode&quot; As &quot;CCCode&quot;,A0.&quot;PrcName&quot; As &quot;CCName&quot;,A0.&quot;DimCode&quot; As &quot;DMCode&quot;
+--   ,A1.&quot;DimDesc&quot; As &quot;DMName&quot;,A0.&quot;U_GrCur&quot; ,A0.&quot;U_Mangr&quot; 
+--   ,A0.&quot;U_ExtText&quot; ,A0.&quot;U_ParPgm&quot;,A0.&quot;U_GrRes&quot;,A0.&quot;U_SubCode&quot;
+--   FROM &quot;CMD&quot;.&quot;OPRC&quot; A0 INNER JOIN &quot;CMD&quot;.&quot;ODIM&quot; A1 ON A0.&quot;DimCode&quot;=A1.&quot;DimCode&quot;
+--   ;
+
+  var_out = 
+   SELECT 1 As COL, A0.&quot;Code&quot; ,A0.&quot;Name&quot; ,A0.&quot;U_IKDIMEN&quot; 
+   --,A1.&quot;DimDesc&quot; As &quot;DMName&quot;
+   ,A0.&quot;U_IKGRCUR&quot; ,A0.&quot;U_IKMAN&quot; 
+   ,A0.&quot;U_IKEXTTXT&quot; ,A0.&quot;U_IKPRPRG&quot;
+   ,(Select B1.&quot;Descr&quot; from &quot;CMD&quot;.&quot;CUFD&quot; B0 
+   Inner Join &quot;CMD&quot;.&quot;UFD1&quot; B1 on B0.&quot;FieldID&quot;=B1.&quot;FieldID&quot; And B0.&quot;TableID&quot;=B1.&quot;TableID&quot; 
+   Where B0.&quot;TableID&quot;='@IK_COSTCENTER' And B0.&quot;AliasID&quot;='IKGRRS'
+And B1.&quot;FldValue&quot;=A0.&quot;U_IKGRRS&quot;) As &quot;U_IKGRRS&quot;
+   --,A0.&quot;U_IKGRRS&quot;
+   ,A0.&quot;U_IKSUBCD&quot;
+   FROM &quot;CMD&quot;.&quot;@IK_COSTCENTER&quot; A0
+   ;
+
+END /********* End Procedure Script ************/</definition>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Script_View">
+  <attributes>
+    <attribute id="Code" order="2">
+      <keyMapping columnObjectName="Script_View" columnName="Code"/>
+    </attribute>
+    <attribute id="Name" order="3">
+      <keyMapping columnObjectName="Script_View" columnName="Name"/>
+    </attribute>
+    <attribute id="U_IKDIMEN" order="4">
+      <keyMapping columnObjectName="Script_View" columnName="U_IKDIMEN"/>
+    </attribute>
+  
+    <attribute id="U_IKGRCUR" order="5">
+  
+      <keyMapping columnObjectName="Script_View" columnName="U_IKGRCUR"/>
+  
+    </attribute>
+    <attribute id="U_IKMAN" order="6">
+      <keyMapping columnObjectName="Script_View" columnName="U_IKMAN"/>
+    </attribute>
+    <attribute id="U_IKEXTTXT" order="7">
+      <keyMapping columnObjectName="Script_View" columnName="U_IKEXTTXT"/>
+    </attribute>
+    <attribute id="U_IKPRPRG" order="8">
+      <keyMapping columnObjectName="Script_View" columnName="U_IKPRPRG"/>
+    </attribute>
+  
+    <attribute id="U_IKGRRS" order="9">
+  
+      <keyMapping columnObjectName="Script_View" columnName="U_IKGRRS"/>
+  
+    </attribute>
+  
+    <attribute id="U_IKSUBCD" order="10">
+  
+      <keyMapping columnObjectName="Script_View" columnName="U_IKSUBCD"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="COL" order="1" aggregationType="count" measureType="simple">
+      <descriptions defaultDescription="COL"/>
+      <measureMapping columnObjectName="Script_View" columnName="COL"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

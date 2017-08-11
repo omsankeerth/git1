@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="freezingLocation" defaultClient="crossClient" defaultLanguage="$$language$$" hidden="false" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE">
+  <descriptions defaultDescription=""/>
+  <metadata changedAt="2014-05-30 16:16:46.344"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+        <viewAttribute id="Code" datatype="INTEGER"/>
+        <viewAttribute id="DocEntry" datatype="INTEGER"/>
+        <viewAttribute id="SubCode" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="SubName" datatype="NVARCHAR" length="100"/>
+        <viewAttribute id="LocCode" datatype="NVARCHAR" length="50"/>
+      
+        <viewAttribute id="LocName" datatype="NVARCHAR" length="100"/></viewAttributes>
+      <calculatedViewAttributes/>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+
+
+var_out = 
+			SELECT  Distinct 1 as &quot;Code&quot;,A0.&quot;DocEntry&quot;,A1.&quot;U_SubCod&quot; As &quot;SubCode&quot;,A1.&quot;U_SubNm&quot; As &quot;SubName&quot;
+			,A1.&quot;U_LocCod&quot; As &quot;LocCode&quot;,A1.&quot;U_LocNm&quot; As &quot;LocName&quot;
+			FROM &quot;CMD&quot;.&quot;@IK_GRFZ&quot; A0 Inner jOin &quot;CMD&quot;.&quot;@IK_RFZ2&quot; A1 on A0.&quot;DocEntry&quot;=A1.&quot;DocEntry&quot;
+			; 
+ END 
+ /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+      <attribute id="DocEntry" order="2">
+        <keyMapping columnObjectName="Script_View" columnName="DocEntry"/>
+      </attribute>
+      <attribute id="SubCode" order="3">
+        <keyMapping columnObjectName="Script_View" columnName="SubCode"/>
+      </attribute>
+      <attribute id="SubName" order="4">
+        <keyMapping columnObjectName="Script_View" columnName="SubName"/>
+      </attribute>
+      <attribute id="LocCode" order="5">
+        <keyMapping columnObjectName="Script_View" columnName="LocCode"/>
+      </attribute>
+      <attribute id="LocName" order="6">
+        <descriptions defaultDescription="Grant Name"/>
+        <keyMapping columnObjectName="Script_View" columnName="LocName"/>
+      </attribute></attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Code" order="1" aggregationType="count" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="Code"/>
+      </measure></baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="GrantContract_RevenueAllocation" defaultClient="crossClient" defaultLanguage="$$language$$" hidden="false" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE">
+  <descriptions defaultDescription=""/>
+  <metadata changedAt="2014-05-30 16:16:46.344"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+        <viewAttribute id="DocEntry" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_GRevLNo" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_AlcSub" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_AlcLoc" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_Remarks" datatype="NVARCHAR" length="247"/>
+        <viewAttribute id="U_Amt" datatype="DOUBLE"/>
+        <viewAttribute id="LineId" datatype="INTEGER"/>
+      
+        <viewAttribute id="U_AlSubNm" datatype="NVARCHAR" length="100"/>
+        <viewAttribute id="U_AlLocNm" datatype="NVARCHAR" length="100"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+ 	 var_out = 
+			SELECT A0.&quot;DocEntry&quot;,A1.&quot;U_GRevLNo&quot;,A1.&quot;U_AlcSub&quot;,A1.&quot;U_AlcLoc&quot;
+			,A1.&quot;U_Remarks&quot;,A1.&quot;U_Amt&quot;
+			,A1.&quot;LineId&quot;,A1.&quot;U_AlSubNm&quot;,A1.&quot;U_AlLocNm&quot;
+			FROM &quot;CMD&quot;.&quot;@IK_GNCT&quot; A0 Inner Join &quot;CMD&quot;.&quot;@IK_NCT2&quot; A1 ON A0.&quot;DocEntry&quot;=A1.&quot;DocEntry&quot;
+			;
+ END 
+ /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+      <attribute id="U_GRevLNo" order="2" semanticType="empty">
+        <descriptions defaultDescription="Grant Code"/>
+        <keyMapping columnObjectName="Script_View" columnName="U_GRevLNo"/>
+      </attribute>
+      <attribute id="U_AlcSub" order="3">
+        <keyMapping columnObjectName="Script_View" columnName="U_AlcSub"/>
+      </attribute>
+      <attribute id="U_AlcLoc" order="4" semanticType="empty">
+        <keyMapping columnObjectName="Script_View" columnName="U_AlcLoc"/>
+      </attribute>
+      <attribute id="U_Remarks" order="5">
+        <keyMapping columnObjectName="Script_View" columnName="U_Remarks"/>
+      </attribute>
+    
+      <attribute id="U_AlSubNm" order="8">
+        <keyMapping columnObjectName="Script_View" columnName="U_AlSubNm"/>
+      </attribute>
+      <attribute id="U_AlLocNm" order="9">
+        <keyMapping columnObjectName="Script_View" columnName="U_AlLocNm"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="DocEntry" order="1" aggregationType="count" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="DocEntry"/>
+      </measure>
+      <measure id="U_Amt" order="6" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="U_Amt"/>
+      </measure>
+      <measure id="LineId" order="7" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="LineId"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

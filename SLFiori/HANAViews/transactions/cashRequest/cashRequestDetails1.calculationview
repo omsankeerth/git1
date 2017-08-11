@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="cashRequestDetails1" defaultClient="crossClient" defaultLanguage="$$language$$" hidden="false" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE">
+  <descriptions defaultDescription=""/>
+  <metadata changedAt="2014-05-30 16:16:46.344"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+        <viewAttribute id="DocEntry" datatype="NVARCHAR" length="50"/>
+      
+        <viewAttribute id="LineId" datatype="INTEGER"/>
+      
+        <viewAttribute id="U_ReqTyp" datatype="NVARCHAR" length="50"/>
+      
+        <viewAttribute id="U_Code" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_Name" datatype="NVARCHAR" length="50"/>
+      
+        <viewAttribute id="U_GrFrEnt" datatype="NVARCHAR" length="10"/>
+        <viewAttribute id="U_GrFrNo" datatype="NVARCHAR" length="20"/>
+        <viewAttribute id="U_ExRate" datatype="DOUBLE"/>
+        <viewAttribute id="U_PaySub" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_PayLoc" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_ReqCurr" datatype="NVARCHAR" length="10"/>
+        <viewAttribute id="U_Amount" datatype="DOUBLE"/>
+        <viewAttribute id="U_PaySts" datatype="NVARCHAR" length="100"/>
+      
+        <viewAttribute id="U_PaySbCd" datatype="NVARCHAR" length="30"/>
+        <viewAttribute id="U_PayLcCd" datatype="NVARCHAR" length="30"/>
+      
+        <viewAttribute id="U_GrFrDt" datatype="NVARCHAR" length="10"/>
+        <viewAttribute id="U_AmtUSD" datatype="DOUBLE"/>
+      
+        <viewAttribute id="U_IsGRPO" datatype="NVARCHAR" length="5"/>
+      
+        <viewAttribute id="U_PayPgCd" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_PayPgm" datatype="NVARCHAR" length="100"/>
+        <viewAttribute id="U_SbMgr" datatype="NVARCHAR" length="20"/>
+        <viewAttribute id="U_SbMail" datatype="NVARCHAR" length="100"/>
+        <viewAttribute id="U_PgmMgr" datatype="NVARCHAR" length="20"/>
+        <viewAttribute id="U_PgmMail" datatype="NVARCHAR" length="100"/>
+        <viewAttribute id="U_UpMail" datatype="NVARCHAR" length="10"/>
+      
+        <viewAttribute id="U_Accpt" datatype="NVARCHAR" length="10"/>
+        <viewAttribute id="U_Rjct" datatype="NVARCHAR" length="10"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+ 	 var_out = 
+			SELECT A0.&quot;DocEntry&quot;
+ 			,A1.&quot;LineId&quot;,A1.&quot;U_ReqTyp&quot;,A1.&quot;U_Code&quot;,A1.&quot;U_Name&quot;--,CAST(A1.&quot;U_PayDate&quot; AS Nvarchar(10)) As &quot;U_PayDate&quot;
+ 			,A1.&quot;U_GrFrEnt&quot;,A1.&quot;U_GrFrNo&quot;,A1.&quot;U_ExRate&quot;,A1.&quot;U_PaySub&quot;,A1.&quot;U_PayLoc&quot;,A1.&quot;U_ReqCurr&quot;,A1.&quot;U_Amount&quot;,A1.&quot;U_PaySts&quot;
+ 			,A1.&quot;U_PaySbCd&quot;,A1.&quot;U_PayLcCd&quot;,cast (A1.&quot;U_GrFrDt&quot; As NVarchar(10)) &quot;U_GrFrDt&quot;
+ 			,A1.&quot;U_AmtUSD&quot;,A1.&quot;U_IsGRPO&quot;
+ 			,A1.&quot;U_PayPgCd&quot;,A1.&quot;U_PayPgm&quot;,A1.&quot;U_SbMgr&quot;,A1.&quot;U_SbMail&quot;,A1.&quot;U_PgmMgr&quot;
+ 			,A1.&quot;U_PgmMail&quot;,A1.&quot;U_UpMail&quot; As &quot;U_UpMail&quot;,A1.&quot;U_Accpt&quot; As &quot;U_Accpt&quot;,A1.&quot;U_Rjct&quot; As &quot;U_Rjct&quot;
+			FROM &quot;CMD&quot;.&quot;@IK_CSREQ&quot; A0 Inner Join &quot;CMD&quot;.&quot;@IK_CREQ1&quot; A1 ON A0.&quot;DocEntry&quot;=A1.&quot;DocEntry&quot;
+			Order By A1.&quot;LineId&quot; 
+			;
+ END 
+ /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+    
+      <attribute id="U_ReqTyp" order="3">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_ReqTyp"/>
+    
+      </attribute>
+    
+      <attribute id="U_Code" order="4">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_Code"/>
+    
+      </attribute>
+      <attribute id="U_Name" order="5">
+        <keyMapping columnObjectName="Script_View" columnName="U_Name"/>
+      </attribute>
+    
+      <attribute id="U_GrFrEnt" order="6">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_GrFrEnt"/>
+    
+      </attribute>
+      <attribute id="U_GrFrNo" order="7">
+        <keyMapping columnObjectName="Script_View" columnName="U_GrFrNo"/>
+      </attribute>
+      <attribute id="U_PaySub" order="9">
+        <keyMapping columnObjectName="Script_View" columnName="U_PaySub"/>
+      </attribute>
+      <attribute id="U_PayLoc" order="10">
+        <keyMapping columnObjectName="Script_View" columnName="U_PayLoc"/>
+      </attribute>
+      <attribute id="U_ReqCurr" order="11">
+        <keyMapping columnObjectName="Script_View" columnName="U_ReqCurr"/>
+      </attribute>
+      <attribute id="U_PaySts" order="13">
+        <keyMapping columnObjectName="Script_View" columnName="U_PaySts"/>
+      </attribute>
+    
+      <attribute id="U_PaySbCd" order="14">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_PaySbCd"/>
+    
+      </attribute>
+      <attribute id="U_PayLcCd" order="15">
+        <keyMapping columnObjectName="Script_View" columnName="U_PayLcCd"/>
+      </attribute>
+    
+      <attribute id="U_GrFrDt" order="16">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_GrFrDt"/>
+    
+      </attribute>
+    
+      <attribute id="U_IsGRPO" order="18">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_IsGRPO"/>
+    
+      </attribute>
+    
+      <attribute id="U_PayPgCd" order="19">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_PayPgCd"/>
+    
+      </attribute>
+      <attribute id="U_PayPgm" order="20">
+        <keyMapping columnObjectName="Script_View" columnName="U_PayPgm"/>
+      </attribute>
+      <attribute id="U_SbMgr" order="21">
+        <keyMapping columnObjectName="Script_View" columnName="U_SbMgr"/>
+      </attribute>
+      <attribute id="U_SbMail" order="22">
+        <keyMapping columnObjectName="Script_View" columnName="U_SbMail"/>
+      </attribute>
+      <attribute id="U_PgmMgr" order="23">
+        <keyMapping columnObjectName="Script_View" columnName="U_PgmMgr"/>
+      </attribute>
+      <attribute id="U_PgmMail" order="24">
+        <keyMapping columnObjectName="Script_View" columnName="U_PgmMail"/>
+      </attribute>
+      <attribute id="U_UpMail" order="25">
+        <keyMapping columnObjectName="Script_View" columnName="U_UpMail"/>
+      </attribute>
+    
+      <attribute id="U_Accpt" order="26">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_Accpt"/>
+    
+      </attribute>
+      <attribute id="U_Rjct" order="27">
+        <keyMapping columnObjectName="Script_View" columnName="U_Rjct"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="DocEntry" order="1" aggregationType="count" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="DocEntry"/>
+      </measure>
+    
+      <measure id="LineId" order="2" aggregationType="sum" measureType="simple">
+    
+        <measureMapping columnObjectName="Script_View" columnName="LineId"/>
+    
+      </measure>
+      <measure id="U_ExRate" order="8" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="U_ExRate"/>
+      </measure>
+      <measure id="U_Amount" order="12" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="U_Amount"/>
+      </measure>
+      <measure id="U_AmtUSD" order="17" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="U_AmtUSD"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

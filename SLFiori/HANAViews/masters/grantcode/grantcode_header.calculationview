@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="grantcode_header" defaultClient="crossClient" defaultLanguage="$$language$$" hidden="false" visibility="reportingEnabled" calculationScenarioType="SCRIPT_BASED" enforceSqlExecution="false" executionSemantic="UNDEFINED" scriptParametersCaseSensitive="true" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="CUBE">
+  <descriptions defaultDescription=""/>
+  <metadata changedAt="2014-05-30 16:16:46.344"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources/>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:SqlScriptView" id="Script_View">
+      <viewAttributes>
+      
+        <viewAttribute id="COL" datatype="INTEGER"/>
+      
+        <viewAttribute id="Code" datatype="NVARCHAR" length="5"/>
+        <viewAttribute id="Name" datatype="NVARCHAR" length="30"/>
+        <viewAttribute id="U_IKGRCUR" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_IKMAN" datatype="NVARCHAR" length="50"/>
+        <viewAttribute id="U_IKGRRS" datatype="NVARCHAR" length="40"/>
+        <viewAttribute id="U_IKEXTTXT" datatype="NVARCHAR" length="200"/>
+        <viewAttribute id="U_IKPRPRG" datatype="NVARCHAR" length="30"/>
+      
+        <viewAttribute id="U_IKMANNM" datatype="NVARCHAR" length="100"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <definition> 
+ /********* Begin Procedure Script ************/ 
+ BEGIN 
+--  	 var_out = 
+-- 			SELECT 1 as COL,A0.&quot;PrcCode&quot; ,A0.&quot;PrcName&quot;
+-- 			,A0.&quot;U_GrCur&quot; ,A0.&quot;U_Mangr&quot;,A0.&quot;U_GrRes&quot;,A0.&quot;U_ExtText&quot;
+-- 			FROM &quot;CMD&quot;.&quot;OPRC&quot; A0 
+-- 			;
+
+var_out = 
+			SELECT 1 as COL,A0.&quot;Code&quot; ,A0.&quot;Name&quot;
+			,A0.&quot;U_IKGRCUR&quot; 
+			,(SELECT &quot;U_NAME&quot; FROM &quot;CMD&quot;.&quot;OUSR&quot; B0 WHERE B0.&quot;USER_CODE&quot;=A0.&quot;U_IKMAN&quot;) As &quot;U_IKMAN&quot;
+			--,A0.&quot;U_IKMAN&quot;
+			,A0.&quot;U_IKGRRS&quot;,A0.&quot;U_IKEXTTXT&quot;
+			,A0.&quot;U_IKPRPRG&quot;,A0.&quot;U_IKMANNM&quot;
+			FROM &quot;CMD&quot;.&quot;@IK_COSTCENTER&quot; A0 
+			;
+ END 
+ /********* End Procedure Script ************/</definition>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Script_View">
+    <attributes>
+      <attribute id="Code" order="2">
+        <keyMapping columnObjectName="Script_View" columnName="Code"/>
+      </attribute>
+      <attribute id="Name" order="3">
+        <keyMapping columnObjectName="Script_View" columnName="Name"/>
+      </attribute>
+    
+      <attribute id="U_IKGRCUR" order="4">
+    
+        <keyMapping columnObjectName="Script_View" columnName="U_IKGRCUR"/>
+    
+      </attribute>
+      <attribute id="U_IKMAN" order="5">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKMAN"/>
+      </attribute>
+      <attribute id="U_IKGRRS" order="6">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKGRRS"/>
+      </attribute>
+      <attribute id="U_IKEXTTXT" order="7">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKEXTTXT"/>
+      </attribute>
+      <attribute id="U_IKPRPRG" order="8">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKPRPRG"/>
+      </attribute>
+    
+      <attribute id="U_IKMANNM" order="9">
+        <keyMapping columnObjectName="Script_View" columnName="U_IKMANNM"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="COL" order="1" aggregationType="sum" measureType="simple">
+        <measureMapping columnObjectName="Script_View" columnName="COL"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:exa="org.edu.ui.controls" xmlns:core="sap.ui.core" xmlns:c="sap.ui.core"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ui="sap.ui"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog showHeader="false" class="sapUiSizeCompact"
+		contentHeight="auto" contentWidth="90%">
+		<content> 
+			<Table id="BankNameListTable" mode="SingleSelectMaster" inset="false" items="{/BankNameList}">
+				<columns>
+				    <Column minScreenWidth="Tablet" demandPopin="true" visible="hidden">
+						<Text text="COL" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Bank Code " />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Bank Name" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+					    	<Text text="{COL}" />
+							<Text text="{BankCode}" />
+							<Text text="{BankName}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+    <buttons>
+        <Button text="Ok" press="handleBankNameOk" />
+        <Button text="Close" press="handleBankNameClose" />
+    </buttons>
+	</Dialog>
+
+</core:FragmentDefinition>

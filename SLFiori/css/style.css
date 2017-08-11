@@ -1,0 +1,270 @@
+.red{
+    border-style: solid;
+    border-width: 1px;
+    border-color: red;
+}
+
+.blue{
+    border-style: solid;
+    border-width: 1px;
+    border-color: blue;
+}
+
+
+
+
+
+.thingViewerBodyContainer>div {
+	height: 100%;
+}
+
+.mySplitContainer {
+	height: 93.5% !important;
+}
+
+.myThingContainer > div {
+	height: 100%;
+}
+.hideLeftPane{
+	display: none;
+}
+.showLeftPane{
+	display: block;
+}
+.login{
+    border: 1px solid gray;
+    padding: 1rem;
+    border-radius: 7px;
+    background-color:white;
+}
+
+.IkyamLogo {
+	left:-50px;
+}
+
+.TopLayer{
+    background-color: #008B8B;
+}
+
+.pocmenu{
+    background-color: white;
+    padding:1rem;
+    border: 1px solid gray;
+    border-radius: 5px;
+    left:10px;
+}
+
+.SplitPage1{
+    padding:10px;
+    font-size: 40px;
+    font-style:italic;
+    
+}
+
+.SaveBtn{
+    width:100px;
+}
+
+.txtCardCode1{
+    height:80%;
+}
+
+.SplitPage2{
+    border: 1px solid gray;
+    padding: 0.5rem;
+    border-radius: 7px;
+    background-color:white;
+}
+
+.SplitDocNum
+{
+    float:right;
+}
+
+.TableBox{
+    border: 1px solid gray;
+    padding: 1rem;
+    border-radius: 7px;
+    height:40px;
+}
+
+.Remarks{
+height:60%;
+}
+
+.Remarks_Text{
+    height:100%;
+    Width:70%;
+}
+
+.Menu{
+     background-color:white;
+}
+
+
+
+.SplitPage3{
+    border: 1px solid gray;
+    padding: 0.5rem;
+    border-radius: 0px;
+    background-color:white;
+    overflow:scroll;
+}
+
+.Split3_label1{
+     border: 1px solid gray;
+    padding: 0.5rem;
+    border-radius: 7px;
+    background-color:white;
+    font-size :17px;
+}
+
+.Split3_Label2{
+     border: 1px solid gray;
+    padding: 0.5rem;
+    border-radius: 7px;
+    background-color:white;
+    font-size :17px;
+}
+
+.Split3_Label3{
+    border: 1px solid gray;
+    padding: 0.5rem;
+    border-radius: 7px;
+    background-color:white;
+    font-size :17px;
+}
+
+.Split3_Label4{
+     border: 1px solid gray;
+    padding: 0.5rem;
+    border-radius: 7px;
+    background-color:white;
+    font-size :17px;
+}
+
+.GrantContract_Label{
+    font-size :30px; 
+}
+
+.SaveGrantBtn{
+    
+    width:100px;
+    float:right;
+}
+
+.AddEntry{
+    float:left;
+}
+
+.sideNavigation1 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+ 
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.Tile_Button1{
+    background-color: white;
+    padding:1rem;
+    border: 1px solid gray;
+    border-radius: 5px;
+    left:10px;
+    width:13rem;
+    height:13rem;
+}
+
+.Tile_Button2{
+    background-color: white;
+    padding:1rem;
+    border: 1px solid gray;
+    border-radius: 5px;
+    left:20px;
+    width:13rem;
+    height:13rem;
+}
+
+.PageTitle{
+        font-size: 80px;
+    font-style:inherit;
+    background-color: solid gray;
+}
+
+.Dashboard_Layout{
+    padding:0.5rem;
+    background-color: white;
+    left:20px;
+}
+
+.Dashboard_Menu{
+    padding:0.5rem;
+    border: 1px solid gray;
+    border-radius: 0px;
+    overflow:scroll;
+    /*background-color: #394958;*/
+}
+
+.Menu_List{
+    padding:0.5rem;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 0px;
+}
+
+.Dashboard_Place{
+     padding-top:10%;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 0px;
+    text-align:center;
+    
+}
+
+.UserDetails{
+    border: 1px solid gray;
+    padding: 0rem;
+    border-radius: 0px;
+    background-color:white;
+}
+
+.SideMenu{
+    color:white;
+}
+
+.ReportsMenu .sapMSLITitleOnly{
+    font:white;
+}
+
+.logoff_icon{
+    left: 50px;
+    float:right;
+}
+
+.DonorBox{
+    border: 1px solid gray;
+    padding: 0.5rem;
+    border-radius: 0px;
+    background-color:white;
+    overflow:scroll;
+}
+
+.AddDelete{
+    border: 1px solid gray;
+    padding: 0.5rem;
+    border-radius: 0px;
+    background-color:white;
+}
+
+.Approve{
+    float:right;
+}
+
+.myStateError { border-color: red; }
+
+.sapMLabelRequired:before { color: red !important; }

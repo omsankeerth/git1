@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:exa="org.edu.ui.controls" xmlns:core="sap.ui.core" xmlns:c="sap.ui.core"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ui="sap.ui"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog showHeader="false" class="sapUiSizeCompact"
+		contentHeight="auto" contentWidth="90%">
+		<subHeader class="sapUiSmallMarginBegin">
+			<Toolbar>
+				<SearchField
+					liveChange="onSearch"
+					width="50%"/>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<Table id="UserListTable" mode="SingleSelectMaster" inset="false" items="{/UserList}">
+				<columns>
+				    <Column minScreenWidth="Tablet" demandPopin="true" visible="hidden">
+						<Text text="COL" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="UserCode" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="UserName" />
+					</Column>
+					
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+					    	<Text text="{COL}" />
+							<Text text="{USER_CODE}" />
+							<Text text="{U_NAME}" />
+							
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+    <buttons>
+        <Button text="Ok" press="handleUserRowOk" />
+        <Button text="Close" press="handleUserRowClose" />
+    </buttons>
+	</Dialog>
+
+</core:FragmentDefinition>

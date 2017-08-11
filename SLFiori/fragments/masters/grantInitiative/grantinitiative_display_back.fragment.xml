@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ui="sap.ui"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog showHeader="true" title="Grant Initiative" class="sapUiSizeCompact"
+		contentHeight="auto" contentWidth="90%">
+		
+			<subHeader class="sapUiSmallMarginBegin">
+			<Toolbar>
+				<SearchField
+					liveChange="onGISearchBack"
+					width="50%"/>
+			</Toolbar>
+		</subHeader>
+		
+		<content>
+			<Table id="GrantInitiativeTableBack" mode="SingleSelectMaster" inset="false" itemPress="handleGrantInitiativeOk_Back" items="{/GrantInitiativeList}">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Grant Initiative Code" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Grant Initiative Name" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Extended Text" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Active">
+						<cells>
+							<Text text="{Code}" />
+							<Text text="{Name}" />
+							<Text text="{U_IKEXTTXT}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+    <buttons>
+        <!--<Button text="View /Edit" press="handleGrantInitiativeOk" />-->
+        <Button text="Close" press="handleGrantInitiativeClose_Back" />
+        <Button text="Add New Grant Inititative" press="handleAddInititative" />
+    </buttons>
+	</Dialog>
+
+</core:FragmentDefinition>

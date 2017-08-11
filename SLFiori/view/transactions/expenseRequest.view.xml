@@ -1,0 +1,310 @@
+<core:View
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:ui="sap.ui.table"
+	xmlns:tnt="sap.tnt"
+		controllerName="SLFiori.view.transactions.expenseRequest"
+	xmlns:m="sap.m"
+	xmlns:c="sap.ui.commons"
+	xmlns:u="sap.ui.unified"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="Page"
+		title="Expense Request"
+		showNavButton="true"
+		navButtonPress="onBack" enableScrolling="false">
+		<HBox id="_HBox" width="99%" height="100%" class="sapUiSmallMarginTop">
+			<VBox id="Third" width="100%" height="90%" visible="true" class="sapUiSmallMarginBegin sapUiSizeCompact SplitPage3">
+				<!-- <Button text="Add New Entry" press="handleAddEntry" type="Emphasized" class="sapUiSmallMarginRight AddEntry"></Button> -->
+				<!-- <HBox width="100%" height="10%" alignItems="End"></HBox>-->
+				<Panel expandable="true" expanded="false" headerText="General Data"  width="auto" class="">
+					<HBox width="100%" justifyContent="Start">
+						<VBox width="20%" >
+							<HBox width="100%">
+								<Label text="Document Number" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<Input value="{/DocNum}" id="DocNum" enabled="false"></Input>
+							</VBox>
+						</VBox>
+						<VBox width="20%" >
+							<HBox width="100%">
+								<Label text="Document Status" class=""></Label>
+							</HBox>
+							<m:Select id="Status" width="80%" items="{
+					path: '/ComboListStatus'
+				}" 
+				selectedKey="{/Status}" change="onSelectionModeChange">
+								<core:Item key="{key}" text="{value}"/>
+							</m:Select>
+						</VBox>
+						<VBox width="20%" class="">
+							<HBox width="100%">
+								<Label text="Vendor Bill No." class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<Input value="{/VBNo}" id="VBNo"  ></Input>
+							</VBox>
+						</VBox>
+						<VBox width="20%" >
+							<HBox width="100%">
+								<Label text="Vendor Bill Date" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<DatePicker
+			        id="VBDate" value="{/VBDate}" valueFormat="yyyyMMdd" displayFormat="long" placeholder="Select Date ..." change="handleChange" enabled="true" class=""/>
+							</VBox >
+						</VBox>
+						<VBox width="20%" >
+							<HBox width="100%">
+								<Label text="Vendor Bill Due Date" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<DatePicker
+			        id="VBDueDt" value="{/VBDueDt}" valueFormat="yyyyMMdd" displayFormat="long" placeholder="Select Date ..." change="handleChange" enabled="true" class=""/>
+							</VBox >
+						</VBox>
+					</HBox>
+					<HBox width="100%" justifyContent="Start">
+						<VBox width="20%">
+							<HBox width="100%">
+								<Label text="Request Type" class=""></Label>
+							</HBox>
+							<!--<VBox width="80%" class="txtCardCode"><Input value="{/ReqTyp}" id="ReqTyp"></Input></VBox>-->
+							<m:Select id="ReqTyp" width="80%" items="{
+					path: '/RequestType'
+				}" 
+				selectedKey="{/ReqTyp}" change="onSelectionModeChange">
+								<core:Item key="{key}" text="{value}"/>
+							</m:Select>
+						</VBox>
+						<VBox width="20%" >
+							<HBox width="100%">
+								<Label text="Request Date" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<DatePicker
+			        id="ReqDate" value="{/ReqDate}" valueFormat="yyyyMMdd" displayFormat="long" placeholder="Select Date ..." change="handleChange" enabled="false" class=""/>
+							</VBox >
+						</VBox>
+						<VBox width="20%" >
+							<HBox width="100%">
+								<Label text="Request No." class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<Input value="{/ReqNo}"  id="ReqNo"  ></Input>
+							</VBox >
+						</VBox>
+						<VBox width="20%">
+							<HBox width="100%">
+								<Label text="Requester Name" class=""></Label>
+							</HBox>
+							<VBox width="80%" class="">
+								<Input value="{/ReqName}"  id="ReqName" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleUserList" ></Input>
+							</VBox>
+						</VBox>
+					</HBox>
+					<!-- <Label text="Donor Information" class="sapUiSmallMarginTop Split3_Label2" /> -->
+					<HBox width="100%" justifyContent="Start">
+						<VBox width="20%">
+							<HBox width="100%">
+								<Label text="Expensing Subsidary" class=""></Label>
+							</HBox>
+							<VBox width="80%" class="">
+								<Input value="{/ExpSubNm}"  id="ExpSubNm" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleDim2" ></Input>
+							</VBox>
+						</VBox>
+						<VBox width="20%" >
+							<HBox width="100%">
+								<Label text="Subsidary Curreny" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<Input value="{/SubCurNm}" id="SubCurNm" enabled="false" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleSubCurrency" ></Input>
+							</VBox>
+						</VBox>
+						<VBox width="20%" class="">
+							<HBox width="100%">
+								<Label text="Expensed Currency" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<Input value="{/ExpCurNm}" id="ExpCurNm" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleExpCurrency" ></Input>
+							</VBox>
+						</VBox>
+						<VBox width="20%" class="">
+							<HBox width="100%">
+								<Label text="Subsidary Manager" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<Input value="{/U_SbMgr}" id="U_SbMgr" enabled="false"></Input>
+							</VBox>
+						</VBox>
+						<VBox width="20%" class="">
+							<HBox width="100%">
+								<Label text="Subsidary Mail" class=""></Label>
+							</HBox>
+							<VBox width="80%" >
+								<Input value="{/U_SbMail}" id="U_SbMail" enabled="false"></Input>
+							</VBox>
+						</VBox>
+					</HBox>
+					<HBox width="100%" justifyContent="Start">
+						<VBox width="100%" class="">
+							<HBox width="100%">
+								<Label text="Requester Remarks" class=""></Label>
+							</HBox>
+							<VBox width="90%" >
+								<Input value="{/Rmks}" id="Rmks" ></Input>
+								
+							</VBox>
+						</VBox>
+						<!--<VBox width="30%" class=""><HBox width="100%"><Label text="Grant Realese Status" class=""></Label></HBox><VBox width="80%" ><Input value="{/GRelsSt}" id="GRelsSt" ></Input></VBox></VBox>-->
+					</HBox>
+				</Panel>
+				<Panel expandable="true" expanded="false"  headerText="Expense Line" width="auto" class="">
+					<!-- <Label text="Finance Information" class="Split3_Label3" /> -->
+					<HBox width="100%" justifyContent="Start">
+						<Table id="idExpenseLines" mode="MultiSelect" multiselect="false" inset="false" items="{/ExpenseLines}">
+							<columns>
+								<Column width="5%" demandPopin="true">
+									<Text text="S.No" />
+								</Column>
+								<Column width="5%" demandPopin="true">
+									<Text text="Approved" />
+								</Column>
+								<Column width="5%" demandPopin="true">
+									<Text text="Rejected" />
+								</Column>
+								<Column width="10%" demandPopin="true">
+									<Text text="Expense Type" />
+								</Column>
+								<Column width="15%" demandPopin="true">
+									<Text text="Description of Expenses" visible="true"/>
+								</Column>
+								<Column width="0%" demandPopin="true">
+									<Text text="Currency Code" visible="false"/>
+								</Column>
+								<Column width="10%" demandPopin="true">
+									<Text text="Currency Name" />
+								</Column>
+								<Column width="10%" demandPopin="true">
+									<Text text="Expense Amount" visible="true"/>
+								</Column>
+								<Column width="0%" demandPopin="true">
+									<Text text="Grant Code" visible="false"/>
+								</Column>
+								<Column width="10%" demandPopin="true">
+									<Text text="Grant Name" />
+								</Column>
+								<Column width="0%" demandPopin="true">
+									<Text text="Location Code" visible="false"/>
+								</Column>
+								<Column width="10%" demandPopin="true">
+									<Text text="Location Name" />
+								</Column>
+								<Column width="0%" demandPopin="true">
+									<Text text="Program Code"  visible="false"/>
+								</Column>
+								<Column width="10%" demandPopin="true">
+									<Text text="Program Name" />
+								</Column>
+								<Column width="0%" demandPopin="true">
+									<Text text="Grant Initiative Code" visible="false"/>
+								</Column>
+								<Column width="10%" demandPopin="true">
+									<Text text="Grant Initiative Name" />
+								</Column>
+								<Column width="10%" demandPopin="true">
+									<Text text="Manager" />
+								</Column>
+								<Column width="10%" demandPopin="true">
+									<Text text="EMail" />
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Input value="{LineId}"  enabled="false" />
+										<m:CheckBox  selected="{U_Accpt}" select="handleCheckBoxAcceptSelected"/>
+										<m:CheckBox  selected="{U_Rjct}" select="handleCheckBoxRejectSelected"/>
+										<Input value="{U_ExpTyp}"  showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleExpenseType"/>
+										<Input value="{U_DescExp}" />
+										<Input value="{U_CurrCode}" visible="false" enabled="false"/>
+										<Input value="{U_CurrName}" enabled="false"/>
+										<Input value="{U_ExpAmt}"  />
+										<Input value="{U_GrCode}" visible="false" enabled="false"/>
+										<Input value="{U_GrName}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleDim1"/>
+										<Input value="{U_LocCode}" visible="false" enabled="false"/>
+										<Input value="{U_LocName}" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleDim3"/>
+										<Input value="{U_PgmCode}" visible="false" enabled="false"/>
+										<Input value="{U_PgmName}" showValueHelp="true" valueHelpOnly="true" aria-autocomplete="list" valueHelpRequest="handleDim4"/>
+										<Input value="{U_GICode}" visible="false" enabled="false"/>
+										<Input value="{U_GIName}" showValueHelp="true" valueHelpOnly="true" aria-autocomplete="list" valueHelpRequest="handleDim5"/>
+										<Input value="{U_PgmMgr}" enabled="true" visible="true"/>
+										<Input value="{U_PgmMail}" enabled="true" visible="true"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</HBox>
+					
+					<Button text="Add Row" press="handleAddRow" type="Accept" class="AddRowBtn"></Button>
+					<Button text="Delete Row" press="handleDeleteRow" type="Reject" class="sapUiSmallMarginLeft DelRowBtn"></Button>
+					
+				</Panel>
+                
+                <IconTabBar
+    	        id="idIconTabBarNoIcons"
+		        expanded="{device>/isNoPhone}"
+		        class="sapUiSmallMarginCompact  sapUiResponsiveContentPadding">
+					<items>
+						<IconTabFilter text="Attachments">
+							<Button text="Add Attachments Row" press="handleAddInitRow" type="Emphasized" class="AddRowBtn"></Button>
+							<HBox width="50%" justifyContent="Start">
+								<Table id="Attachments" inset="false" mode="MultiSelect" multiselect="false" items="{/Attachments}">
+									<columns>
+										<Column width="5%" demandPopin="true">
+											<Text text="S.No." />
+										</Column>
+										<Column width="15%" demandPopin="true">
+											<Text text="Description" />
+										</Column>
+										<Column width="30%" demandPopin="true">
+											<Text text="Attachments" />
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Input value="{LineId}" enabled="false"/>
+												<Input value="{U_AttDesc}"  enabled="true" />
+											<!--<Input value="{U_Attach}"  />-->
+											<u:FileUploader
+			id="U_Attach"
+			name="myFileUpload"
+			uploadUrl="upload/"
+			width="100%"
+			visible="true"
+			tooltip="Upload your file to the local server"
+			uploadComplete="handleUploadComplete"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</HBox>
+						</IconTabFilter>
+						</items>
+				</IconTabBar>
+						
+			</VBox>
+		</HBox>
+		<footer>
+			<!--<Button text="Save" press="handleSaveGrantContract" type="Accept" class="sapUiSmallMargin SaveGrantBtn"></Button>-->
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button text="Go to Main Menu" press="handlegoBack"  width="12%"  />
+				<Button text="Save" press="handleSaveExpenseReq" type="Accept" class="sapUiSmallMargin SaveGrantBtn" />
+				<!--<Button text="Reject" type="Reject" /><Button text="Edit" /><Button text="Delete" />-->
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>
